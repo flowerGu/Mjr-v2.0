@@ -1,0 +1,21 @@
+<div class="my_account_main_left">
+	<ul class="my_account_mainleft">
+		<a href="my_wealth.html"><li class="{{myaccount}}" >账户首页</li></a>
+		<li><a class="{{wealthnav}}" href="invests.html">我的项目</a></li>
+		<li><a href="capital_list.html" class="{{captList}}">资产记录</a></li>
+		<li><a href="accout_detial.html" class="{{accDetial}}">资产明细</a></li>
+	</ul>
+	<ul class="my_account_mainleft" >
+		<li class="my_account_pset" ><a href="mysetting.html" class="{{settingindex}}">个人设置</a></li>
+		<li><a href="mysetting.html" class="{{settingindex}}">个人设置首页</a></li>
+		<li><a href="bankinfo.html" class="{{bankinfo}}">银行卡管理</a></li>
+	</ul>
+</div>
+<script>
+	if(!islogin(getCookie('tokenid'))){
+		alertmsg('登录超时，请重新登录');
+		$("#datamsgModal").on('hidden.bs.modal', function () {
+		        window.location.href='login.html';
+		});
+	}
+</script>

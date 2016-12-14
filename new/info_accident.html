@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="renderer" content="webkit" /> 
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+</head>
+<title>平台数据</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/head_one.css" rel="stylesheet" type="text/css" />
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/my_account.css" />
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/help.css"/>
+
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/angular-1.0.1.min.js"></script>
+<script src="./js/angular-route.min.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/md5.js"></script>
+
+<style>
+.safety_banner{
+	pading:0px; margin:0px; background:url(../images/safetyBanner.jpg) no-repeat top center; height:431px;
+}
+.cotent_info{background:#f3f3f3;padding:10px;}
+.wrap{margin:10px auto;width:1010px;}
+.wrap img{margin-bottom:20px}
+</style>
+<body  ng-app="Mejinrong">
+    <div ng-include="'head_one.html'"></div>
+	<div ng-include="'nav.html'"></div>
+	<div class="cotent_info">
+		<div class="wrap">
+		<img src="images/info_03.png" />
+		<img src="images/info_07.png" />
+		<img src="images/info_10.png" />
+		<img src="images/info_12.png" />
+		<img src="images/info_14.jpg" style="width:1010px" />
+	</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div ng-include="'./main_bottom.html'"></div>  
+	<div ng-include="'./footer.html'"></div>
+</body>
+
+ <script type="text/javascript">
+ 	 var app = angular.module('Mejinrong', []);
+ 	 app.controller('myCtrl', function($scope) {
+		    $.ajax({
+		      url:data_json.classificationlist_pc,
+		      type:'post',
+		      async:false,
+		      data:{version:app_data.version,type:2},
+		      dataType:'json',
+		      success:function(data){
+		        if(data.code=='000')
+		        {
+		        	if(data.list!='')
+	        	{
+	        		$scope.list = data.list;
+					$scope.list1 = data.list[0];
+					for(var i = 0;i < data.list.length;i++){
+						for(var j = 0;j < data.list[i].listmain.length;j++){
+							$(window).ready(function(){	
+								$(".question:eq(0)").addClass("redword");
+								$(".question li").click(function(){
+									$(this).parent(".question").addClass("redword").siblings().removeClass("redword");
+									var m = $(this).parent(".question").index();
+									$(".act_right").html("");
+										for(var i = 0;i < data.list[m].listmain.length;i++){
+											var ali = $("<li class='answerli' unselectable='on' style='-moz-user-select:none;' onselectstart='return false;'><a class='msgid' id='message_{{y.id}}'>"+data.list[m].listmain[i].title+"</a><div class='answer'>"+data.list[m].listmain[i].summary+"</div><span></span></li>");
+											$(".act_right").append(ali);
+										}
+									$(".answerli").click(function(){
+										
+										if($(this).children(".answer").css("display") == "none"){
+											$(this).children(".answer").show();
+											$(this).children("span").css({"border-top":"0","border-bottom":"5px solid #fc2956"});
+										}else{
+											$(this).children(".answer").hide();
+											$(this).children("span").css({"border-top":"5px solid #fc2956","border-bottom":"0"});
+				
+										}	
+									});
+								});		
+								
+							})
+						}
+					}
+	        	}
+	        	else
+	        	{
+	     			
+	        	}
+				  	
+		        }
+		    }
+		});
+	});
+
+
+$('nav ').find('li').eq(4).addClass('border_btm3');
+</script>
+
+
+
+

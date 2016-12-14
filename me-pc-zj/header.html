@@ -1,0 +1,45 @@
+	<script type='text/javascript'>
+	  var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?e923b002aba4a0bd4854fcbb95ca3880";
+		  var s = document.getElementsByTagName("script")[0];
+		  s.parentNode.insertBefore(hm, s);
+		})();
+
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', '170d8afb406b42b7869860a63f25c4e1']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+</script>
+<div id='header'>
+	<div class="content">
+		<a href="index.html" style="float:left;width:320px;">
+			<img src="images/melogored.png" style="width:94px;">
+			<img class="minslogen" src="images/minslogen.png">
+		</a>
+		<span class="register_title"><a>用户登录</a></span>
+		<!-- <button onclick="logout()">退出</button> -->
+	</div>
+</div>
+<script>
+    var title = $("title").html();
+	if(title == "注册"){
+		$(".register_title a").html("用户注册");
+	}else if(title == "登录"){
+		$(".register_title a").html("用户登录");
+	}else if(title == "忘记密码"){
+		$(".register_title a").html("忘记密码");
+	}else if(title == "忘记密码——验证"){
+		$(".register_title a").html("忘记密码");
+	}
+</script>

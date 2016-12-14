@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="renderer" content="webkit" /> 
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+</head>
+<title>我的账户-充值</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/head_one.css" rel="stylesheet" type="text/css" />
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/my_account.css" />
+<link rel="stylesheet" type="text/css" href="css/all_item.css"/>
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/person_test.css" />
+
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/angular-1.0.1.min.js"></script>
+<script src="./js/angular-route.min.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/md5.js"></script>
+
+<body  ng-app="Mejinrong">
+    <div ng-include="'head_one.html'"></div>
+	<div ng-include="'nav.html'"></div>
+	<div ng-include="'service_nav.html'"></div>
+	<div class="my_account_main" ng-controller="myCtrl">
+		<div ng-include="'left_nav.html'" ng-init="settingindex='my_account_mainleft_red'" ></div>
+		<div class="my_account_mainright">
+			<div class="my_account_mr pt_renzheng chzi_chong">
+				<h3><a class="chongzhi" href="chongzhi.html"><img src="images/chzired.png" /> &nbsp;我要充值</a>
+					<a class="chongzhi chzigray"  href="tixian.html"><img src="images/tixiangray.png" /> &nbsp;我要提现</a>   
+					<a href="my_wealth.html"><返回上一层></a>
+				</h3>
+				
+				<h3 class="chzi_money">输入您要充的金额数</h3>
+				<input type="input"onkeyup="judge_decimal('#money')" class="pt_rzh_text" placeholder="   充值金额"  id='money' autocomplete="off" />
+				<p class="chzi_qichong"><font ng-bind="data.recharge_low | fixed"></font>元起充</p>
+				<a class="pt_renzheng_btn" ng-click="getamtlimit_pc()">下一步</a>
+			</div>
+		</div>
+	</div>
+	
+	<div ng-include="'./main_bottom.html'"></div>  
+	<div ng-include="'./footer.html'"></div>
+ </body>
+ <script type="text/javascript" src="./js/my_account01.js" ></script>
+
+<script type="text/javascript">
+ if(!islogin(getCookie('tokenid')))
+   {
+   	alertmsg('您还未登录',true)
+   	$("#datamsgModal").on('hidden.bs.modal', function () {
+   		window.location.href='login.html';
+   	});
+   }
+  var app = angular.module('Mejinrong', []);
+  app.controller('myCtrl', function($scope) {
+	   
+	     $.ajax({
+			url:data_json.getamtlimit_pc,
+			type:'post',
+			async:false,
+			data:{version:app_data.version,tokenid:getCookie('tokenid')},
+			dataType:'json',
+			success:function(data){
+				if(data.code=='000')
+				{
+					$scope.data = data;
+					$scope.getamtlimit_pc=function(){
+							  var amount=$('#money').val().trim();
+							  if(amount=='' || amount<=0){
+							  	alertmsg('请输入正确的充值金额');
+							  	return false;
+							  }
+							 if(!islogin(getCookie('tokenid')))
+							   {
+							   	alertmsg('您还未登录',true)
+							   	$("#datamsgModal").on('hidden.bs.modal', function () {
+							   		window.location.href='login.html';
+							   	});
+							   }
+							
+							  $.ajax({
+									url:data_json.getamtlimit_pc,
+									type:'post',
+									async:false,
+									data:{version:app_data.version,tokenid:getCookie('tokenid')},
+									dataType:'json',
+									success:function(data){
+										var obj_zj=iszhongjin();
+										if(obj_zj.is_realname==false){//实名绑卡
+												alertmsg('未实名认证')
+												return false;
+										}else if(obj_zj.is_binding==false){//实名绑卡
+												alertmsg('未绑卡')
+												return false;
+										}else if(obj_zj.accredit_bid_status==false){//实名绑卡
+												alertmsg('没有授权')
+												return false;
+										}
+										else if(amount<parseFloat(data.recharge_low)){
+											alertmsg("最低充值限额为"+data.recharge_low+"元 ");
+											return false;
+										}else if(amount>parseFloat(data.recharge_high)){
+											alertmsg("最高充值限额不能超过"+data.recharge_high+"元");
+											return false;
+										}else{
+											cpcnrecharge_pc();
+										}
+									}
+								});
+						  }
+					
+				}
+				else
+				{
+					$scope.data = null;
+				}
+			}
+		});
+  });
+	app.filter("fixed",function(){
+	            return function(input){
+	                input = parseFloat(input).toFixed(2);
+	                return input;
+	            }
+	});
+  function cpcnrecharge_pc() {
+    var amount=parseFloat($('#money').val().trim()).toFixed(2);
+    $.ajax({
+      url:data_json.cpcnrecharge_pc,
+      type:'post',
+      async:false,
+      data:{version:app_data.version,tokenid:getCookie('tokenid'),amount:amount},
+      dataType:'json',
+      success:function(data){
+        if(data.code=='000')
+        {
+           post_yb(data.url,{message :data.message,signature:data.signature})
+        }else
+      	  {
+          alertmsg(data.msg)
+        }
+      }
+    });
+  }
+  
+  
+</script>

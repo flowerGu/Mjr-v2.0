@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="renderer" content="webkit" /> 
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+</head>
+<title>我的账户</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/head_one.css" rel="stylesheet" type="text/css" />
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/my_account.css" />
+<link rel="stylesheet" type="text/css" href="css/all_item.css"/>
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/pikaday.css"/>
+<link rel="stylesheet" href="css/person_test.css" />
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/angular-1.0.1.min.js"></script>
+<script src="./js/angular-route.min.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/md5.js"></script>
+<script type="text/javascript" src="js/placeholderfriend.js"></script>
+
+<body  ng-app>
+    <div ng-include="'head_one.html'"></div>
+	<div ng-include="'nav.html'"></div>
+	<div ng-include="'service_nav.html'"></div>
+	
+	<div class="my_account_main">
+		 <div ng-include="'left_nav.html'" ng-init="settingindex='my_account_mainleft_red'" ></div>
+		<div class="my_account_mainright">
+			<div class="my_account_mr pt_renzheng">
+				<h3>为了确保您的资金安全，请进行实名认证    <a href="mysetting.html"><返回上一层></a></h3>
+				<input type="text" class="pt_rzh_text" placeholder="   请输入真实姓名" id="name" type="text" />
+				<input type="text" class="pt_rzh_text pt_rzh_marg" placeholder="   请输入本人身份证号" id="cardnum" type="text" />
+				<span>验证通过“全国公民身份系统”完成，平台不会向<br>第三方泄露您的任何信息</span>
+				<input type="button" class="pt_renzheng_btn" value="下一步"  onclick="cpcnregister_pc()"/>
+			</div>
+		</div>
+	</div>
+	
+	<div ng-include="'./main_bottom.html'"></div>  
+	<div ng-include="'./footer.html'"></div>
+ </body>
+
+<script type="text/javascript">
+	
+	function cpcnregister_pc() {
+		var name=$('#name').val().trim();
+		var cardnum=$('#cardnum').val().trim();
+		if(name == ''){
+			alertmsg('请输入姓名！');
+			return;
+		}
+		var nameReg = /^[\u4e00-\u9fa5]{2,4}$/;
+		if(!nameReg.test(name)){
+			alertmsg('姓名不符合规则，请重新输入！');
+			return;
+		}
+		if(cardnum == ''){
+			alertmsg('请输入身份证号！');
+			return;
+		}
+		var cardNumReg = /^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/;
+		if(!cardNumReg.test(cardnum)){
+			alertmsg('身份证号不符合规则，请重新输入！');
+			return;
+		}
+		$.ajax({
+			url:data_json.cpcnregister_pc,
+			type:'post',
+			async:false,
+			data:{
+				version:app_data.version,
+				tokenid:getCookie('tokenid'),
+				userName: name,
+                identificationNumber : cardnum
+            },
+			dataType:'json',
+			success:function(data){
+				if(data.code=='000')
+				{
+					 post_yb(data.url,{message :data.message,signature:data.signature})
+				}else
+				{
+					
+				}
+			}
+		});
+	}
+	// cpcnregister_pc();
+</script>

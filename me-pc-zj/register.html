@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="renderer" content="webkit" /> 
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+
+</head>
+<title>注册【Me金融】</title>
+<meta name="keywords" content="Me金融,民信Me金融,Me金融理财,互联网金融,投资理财,P2P理财">
+<meta name="description" content="Me金融-民信公司旗下独立品牌，专业的个性化互联网金融服务平台">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/register.css" rel="stylesheet" type="text/css" />
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/login.css"/>
+
+<script src="./js/jquery.min.js"></script>
+<script src="./js/angular-1.0.1.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/md5.js"></script>
+<script src="./js/validate.js"></script>
+<style type="text/css">
+	/*input{display: block;}*/
+</style>
+<script src="./js/config.js"></script>
+<script type="text/javascript">
+	function register() {
+		var logintel=$('#logintel').val().trim();
+		var password=$('#password').val().trim();
+		var repassword=$('#repassword').val().trim();
+		var checkcode=$('#checkcode').val().trim();
+		var imgcheckcode=$('#imgcheckcode').val().trim();
+		var referral_code=$('#referral_code').val().trim();
+
+		if(logintel=='' || password=='' )
+		{
+			alertmsg('用户名或密码不能为空！');
+			return false;
+		}
+		if(checkcode=="")
+		{
+			alertmsg('短信验证码不能为空！');
+			return false;
+		}
+		if(imgcheckcode=="")
+		{
+			alertmsg('图片验证码不能为空！');
+			return false;
+		}
+		if(password!=repassword)
+		{
+			alertmsg('两次密码输入不一致！');
+			return false;
+		}
+		if(checkSubmitMobil(logintel)==false)
+		{
+			alertmsg('手机号格式不正确！');
+			return false;
+		}
+		if(checkSubmitPass(password)==false)
+		{
+			alertmsg('密码格式不正确！');
+			return false;
+		}
+
+		password=hex_md5(password);
+		$.ajax({
+			url:data_json.register_pc,
+			type:'post',
+			async:false,
+			data:{
+				version:app_data.version,
+				logintel:logintel,
+				password:password,
+				checkcode:checkcode,
+				check_code_value:imgcheckcode,
+				check_code_key:getCookie('radom10'),
+				referral_code:referral_code,
+				chanel:'pc'
+			},
+			dataType:'json',
+			success:function(data){
+				if(data.code=='000')
+				{
+					alertmsg(data.msg);
+					setCookie('tokenid',data.tokenid)
+					$("#datamsgModal").on('hidden.bs.modal', function () {
+					      window.location.href='index.html';
+					});
+					parameters = {
+					   	version:app_data.version,
+					   	tokenid:getCookie('tokenid'),
+					   	channel:"pc",
+					   	tradestatus:1
+				   	};
+        	 		$.post(data_json.equipment_pc,parameters);
+        	 		
+				}else
+				{
+					alertmsg(data.msg);
+				}
+				getimg()
+			},
+			error:function(data){
+				getimg()
+			}
+		});
+	}
+	var wait=60;
+	function time(o) {
+
+			if (wait == 0) {
+				o.removeAttribute("disabled");			
+				document.getElementById("btn_checkcode").style.backgroundColor="#fe4358";
+				o.value="重新发送";
+				wait = 60;
+			} else {
+				// alert(o)
+				document.getElementById("btn_checkcode").style.backgroundColor="#ccc";
+				o.setAttribute("disabled", true);
+				o.value="" + wait + "s后重新发送";
+				wait--;
+				setTimeout(function() {
+					time(o)
+				},
+				1000)
+			}
+	}
+	function sendcode(){
+		var tel=$('#logintel').val().trim();
+		if(tel==''){
+			alertmsg('请填写手机号');
+			return false;
+		}
+		if(!checkSubmitMobil(tel)){
+			alertmsg('手机号格式不正确');
+			return false;
+		}
+		
+		$.ajax({
+				url:data_json.checkusername_pc,
+				type:'post',
+				async:false,
+				data:{version:app_data.version,logintel:tel},
+				dataType:'json',
+				success:function(data){
+					if(data.code=="SL-002"){
+						alertmsg('手机号已注册');
+						return false;
+					}else{
+						checkcode_pc(tel,11);
+					}
+				}
+			});
+	}
+	getimg();
+</script>
+<body ng-app> 
+<div ng-include="'./header.html'"></div>  
+<div id="main">
+	<div class="content">
+			<div class="erweima">
+				<dl>
+					<dt><img src="images/iPhone.png"/></dt>
+					<dd style="font-size:12px;">iPhone下载</dd>
+				</dl>
+				<dl>
+					<dt><img src="images/Andrio.png"/></dt>
+					<dd style="font-size:12px;">安卓下载</dd>
+				</dl>
+				<dl>
+					<dt><img src="images/wx_gong.png"/></dt>
+					<dd style="font-size:12px;">微信公众号</dd>
+				</dl>
+			</div>
+			<div class="register_div">
+				<table>
+					<tr>
+						<td><label class="control-label" for="input01"><span class="colorred">*</span>手机号</label></td>
+						<td> <input type="text" placeholder="请输入中国大陆手机号" class="input-xlarge" id="logintel" name="logintel" maxlength="11"></td>
+					</tr>
+					<tr>
+						<td><label class="control-label" for="input01"><span class="colorred">*</span>短信码</label></td>
+						<td><input type="text" placeholder="手机验证码" class="input-xlarge invide" id="checkcode" name="checkcode">
+						<input type="button" class="btn_yzm btnsend"  onclick="sendcode()" id="btn_checkcode" value="发送验证码">
+						</td>
+					</tr>
+					<tr>
+						<td> <label class="control-label" for="input01"><span class="colorred">*</span>登录密码</label></td>
+						<td> <input type="password" placeholder="6-16位数字、字母符号" class="input-xlarge" id="password" name="password"></td>
+					</tr>
+					<tr>
+						<td> <label class="control-label" for="input01"><span class="colorred">*</span>重复密码</label></td>
+						<td><input type="password" placeholder="6-16位数字、字母符号" class="input-xlarge" id="repassword" name="repassword"></td>
+					</tr>
+					
+					<tr>
+						<td> <label class="control-label" for="input01"><span class="colorred">*</span>验证码</label></td>
+						<td><input type="text" placeholder="请输入验证码" class="input-xlarge telinvide" id="imgcheckcode" name="imgcheckcode">
+						<img src="" class="reg_invide_img" onclick="getimg()" />
+						</td>
+					</tr>
+					<tr>
+						<td> <label class="control-label" for="input01">邀请码</label></td>
+						<td><input type="text" placeholder="请输入邀请码" class="input-xlarge" id="referral_code" name="referral_code"></td>
+					</tr>
+					<tr>
+						<td colspan="2" class="coltd"><button class="btn btn-danger"  onclick="register()">同意协议并注册</button></td>
+					</tr>
+					<tr>
+						<td  colspan="2" style="text-align: center;padding-top: 15px;">
+							<a href="reg_xieyi.html" class="reg_xieyi" target="_blank">《Me金融使用协议》</a>
+							<a href="login.html" style="text-decoration:none ;">已有账号？立即登录</a>
+						</td>
+					</tr>
+					
+				</table>   
+		            
+			</div>
+	</div>
+</div>
+
+
+<div ng-include="'./footer.html'"></div>  
+
+</body>

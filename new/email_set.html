@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="renderer" content="webkit" /> 
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+</head>
+<title>我的账户</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/head_one.css" rel="stylesheet" type="text/css" />
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/my_account.css" />
+<link rel="stylesheet" type="text/css" href="css/all_item.css"/>
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/pikaday.css"/>
+<link rel="stylesheet" href="css/person_test.css" />
+
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/angular-1.0.1.min.js"></script>
+<script src="./js/angular-route.min.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/md5.js"></script>
+
+<body  ng-app>
+    <div ng-include="'head_one.html'"></div>
+	<div ng-include="'nav.html'"></div>
+	<div class="body_right br_top">
+    	<dl class="body_rightdl">
+    		<dt></dt>
+    		<dd>客服</dd>
+    	</dl>
+    	<dl class="body_rightdl body_rightdl1">
+    		<dt></dt>
+    		<dd>二维码</dd>
+    	</dl>
+    	<p class="jiantou"><img src="images/menu-up.png"/></p>
+    </div>
+    <!--
+    	作者：offline
+    	时间：2016-05-09
+    	描述：abnner
+    -->
+	<div class="my_account_bann">
+		<div class="my_account_bann_cen">
+			<p>恭喜民信成为中国互联网协会首批会员</p>
+		</div>
+	</div>
+	<!--
+    	作者：offline
+    	时间：2016-05-09
+    	描述：main
+    -->
+	<div class="my_account_main">
+		<div ng-include="'./left_nav.html'" ng-init="settingindex='my_account_mainleft_red'" ></div>  
+		<div class="my_account_mainright">
+			<div class="my_account_mr pt_renzheng pt_emailset">
+				<h3>请输入要绑定的邮箱 <a href="person_test.html"><返回上一层></a></h3>
+				<input type="text" class="pt_rzh_text" placeholder="   邮箱"  id="setEmail"/>
+				<p>设置后，民信将可以发送邮件到您的邮箱</p>
+				<input type="button" class="pt_renzheng_btn" value="保存"  onclick="setEmail()"/>
+			</div>
+		</div>
+	</div>
+<!-- 模态框（Modal） -->
+	<div ng-include="'./main_bottom.html'"></div>  
+	<div ng-include="'./footer.html'"></div>
+ </body>
+<script>
+    function setEmail(){
+        $.ajax({
+            url : data_json.saveEmail_pc,
+            type : 'post',
+            dataType : 'json',
+            data : {
+                version : app_data.version,
+                tokenid : getCookie('tokenid'),
+                email : $('#setEmail').val().trim()
+            },
+            success : function(data){
+                if (data.code=='000') {
+                    alertmsg('邮箱设置成功！');
+                    $("#datamsgModal").on('hidden.bs.modal', function () {
+					        window.location.href='my_wealth.html';
+					});
+                } else {
+                    alertmsg('邮箱设置失败！');
+                }
+            },
+            error : function(e) {
+            }
+        })
+    }
+</script>

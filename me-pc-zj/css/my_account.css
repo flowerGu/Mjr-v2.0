@@ -1,0 +1,266 @@
+.my_account_bann{
+	height:82px;
+	background:#fc2956;
+}
+.my_account_bann_cen{
+	width:1000px;
+	margin:0 auto;
+	height:100%;
+	position: relative;
+	background: url("../images/my_banner.jpg") no-repeat center center;
+}
+.my_account_bann_cen p{
+	color:#f9ec86;
+	font-size:20px;
+	position:absolute;
+	right:79px;
+	top:30px;
+}
+.my_account_main{
+	width:1000px;
+	min-height:200px;
+	margin:0 auto;
+	overflow:hidden;
+	padding-top:28px;
+}
+.my_account_main_left{
+	width:153px;
+	height:100%;
+	float: left;
+}
+.my_account_mainleft{
+	width:100%;
+	height:100%;
+	float:left;
+	margin:0;
+}
+.my_account_main_left li{
+	font-size:14px;
+	margin-left:20px;
+}
+.my_account_main_left li:first-child{
+	font-size:20px;
+	margin:0px;
+}
+.my_account_main_left .question li{
+	font-size:20px;
+	margin-bottom:20px;
+}
+.redword li:first-child{
+	color:#fc2956;
+}
+.act_right li:first-child{
+	font-size:14px;
+	border-top:1px solid #e1e1e1;
+}
+.my_account_mainleft .my_account_mainleft_red{
+	color:#fb2d5b;
+}
+.my_account_mainleft li{
+	color:#606060;
+	font-size:14px;
+	cursor:pointer;
+	width:100%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	line-height:35px;
+	min-height:35px;
+}
+.my_account_mainright{
+	width:846px;
+	height:100%;
+	float:right;	
+}
+
+/*--答案------------------*/
+.act_right .answer{
+	width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    min-height: 45px;
+    display: none;
+    white-space: normal;
+    word-break: break-all;
+    word-wrap: break-word;
+    border-top: 1px solid #e1e1e1;
+    padding: 11px 20px;
+    line-height: 22px;
+}
+
+
+
+.my_account_mr_top{
+	width:810px;
+	height:255px;
+	border:1px solid #e6e6e6;
+	padding:30px 12px 0 22px;
+}
+.list-group{
+	height:115px;
+	border-bottom:1px dashed #c7c7c7;
+}
+.list-group-person{
+	width:215px;
+	height:85px;
+	margin-left:15px;
+	float:left;
+}
+.list-group-person div{
+	float:left;
+	width:80px;
+	height:80px;
+}
+.list-group-person div:nth-of-type(1){overflow:hidden;}
+.list-group-person div img{
+	border-radius: 80px;
+}
+.list-group-personmsg{
+	width:114px;
+	height:55px;
+	float:right;
+	margin-left:20px;
+}
+.list-group-tel{
+	height:30px;
+	background:url(../images/my_act_tel.png) no-repeat 0 0;
+}
+.list-group-tel span{
+	float:left;
+	width:21px;
+	height:100%;
+}
+.list-group_personset{
+	width:114px;
+	height:23px;
+	color:#fff;
+	line-height:23px;
+	background:#ffd938;
+	text-align:center;
+	border-radius: 3px;
+	cursor: pointer;
+}
+.list-group-shou{
+	width:140px;
+	height:60px;
+	float:left;
+	margin:0 70px;
+}
+.list-group-shou dt{
+	color:#616161;
+	font-size:14px;
+	font-weight:200;
+	line-height:36px;
+	text-align:center;
+}
+.list-group-shou dd{
+	color:#f00048;
+	font-size:20px;
+	text-align:center;
+}
+.list-group-shou dd span{
+	font-size:12px;
+}
+.list-group-btnc{
+	width:75px;
+	height:23px;
+	line-height:23px;
+	background:#fc2956;
+	margin-top:30px;
+}
+.list-group-zc{
+	height:83px;
+	padding:22px 70px 0 70px;	
+	border:0;
+}
+.list-group-zcdl{
+	width:140px;
+	height:70px;
+	color:#8b8b8b;
+	float:left;
+}
+.list-group-zcdl dt{
+	font-size:14px;
+	line-height:40px;
+	text-align: center;
+	font-weight: 100;
+}
+.list-group-zcdl dd{
+	font-size:20px;
+	text-align: center;
+}
+.list-group-zc .margboth{
+	margin:0 120px;
+}
+.my_account_mr_botm{
+	width:845px;
+	min-height:200px;
+	padding:40px 0 0 20px;
+	
+}
+.my_account_mr_botm table{
+	float:left;
+	margin-bottom:35px;
+}
+.my_account_mr_botm table tr td{
+	color:#585858;
+	font-size:14px;
+}
+.my_account_mr_botm a{
+	color:#f52c58;
+	float:right;
+	margin-right:46px;
+}
+.my_account_tosee{
+	height:310px;
+	width:100%;
+	float:left;
+}
+.my_account_tosee_dl .run_tosee a{
+	width:108px;
+	height:34px;
+	display: block;
+	background:#fc2956;
+	color:#fff;
+	font-size:20px;
+	margin-top:-30px;
+	position:absolute;
+	top:110px;
+	text-align: center;
+	line-height:34px;
+	border-radius:4px;
+}
+.my_account_tosee_dl{
+	width:115px;
+	height:160px;
+	margin:0 auto;
+	margin-top:10%;
+	position:relative;
+}
+.my_account_tosee_dl dt{
+	margin-left:28px;
+}
+.wujilu{
+	position:absolute;
+	bottom:10px;
+	text-align: center;
+	width:100%;
+	color:#bfbfbf;
+}
+
+.pre_next{
+	font-size:14px;
+	text-align:right;
+	margin-bottom:50px;
+	height:40px;
+	float:left;
+	width:810px;
+	padding-right:35px;
+	border-bottom:1px dashed #c9c9c9;
+}
+.pre_next a,.pre_next div{
+	float:right;
+	margin:0;
+	width:auto;
+	color:#333;
+}

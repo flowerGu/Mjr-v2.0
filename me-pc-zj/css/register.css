@@ -1,0 +1,61 @@
+.register_div{
+	width: 290px;
+    height: auto;
+    position: absolute;
+    top: 80px;
+    right: 100px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px 0;
+    padding-top: 30px;
+}
+.control-label{
+	float: right;
+	margin-right: 10px;
+}
+.input-xlarge {
+    width: 186px;
+}
+.telinvide{
+	 width: 81px;
+}
+.invide{
+	 width: 68px;
+}
+.reg_invide_img{
+	height: 32px;
+	margin-bottom: 9px;
+	margin-left: 5px;
+	cursor: pointer;
+}
+.btnsend{
+	margin-bottom: 9px;
+	margin-left: 10px;
+	padding:5px;
+}
+.register_div table{
+	width: 275px;
+	margin: 0 auto;
+}
+.register_div table tr td:nth-of-type(1){
+	width: 70px;
+}
+.coltd{
+	text-align: center;
+}
+.reg_xieyi {
+	font-size: 12px;
+	color: rgb(255,71,84);
+	margin-right: 20px;
+}
+.btn-success{
+	width: 200px;
+}
+
+
+.btn_yzm{
+	border:0;
+	border-radius: 3px;
+	background:#fe4358;
+	color:#fff;
+}

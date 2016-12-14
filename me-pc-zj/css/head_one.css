@@ -1,0 +1,257 @@
+
+a:focus{outline:none;}
+/*----头部--------------------------------------------*/
+#header_one{
+	height:32px;
+	width:100%;
+	border-bottom: 1px solid #ececec;
+}
+.head_one_left{
+	color:#818181;
+	padding:0;
+	height:100%;
+}
+.head_one_left h1{
+	font-size:12px;
+	display:inline;
+	margin-left:10px;
+	color:#818181;
+}
+.head_one_left p{
+	display:inline;
+	margin-left:65px;
+}
+.head_one_ul{
+	float:right;
+}
+.head_one_ul li{
+	float:right;
+	width:77px;
+	text-align: center;
+	line-height:32px;
+	cursor: pointer;
+}
+.head_one_ul li a:hover{
+	color:#f31d59;
+}
+.red{
+	color:#f31d59;
+}
+
+/*---导航---------------------------------------------*/
+nav{
+	width:1000px;
+	height:54px;
+	margin:0 auto;
+	padding-top:10px;
+}
+nav div{
+	float:left;
+}
+.pic_margleft{
+	/*width:144px;*/
+	height:22px;
+	margin-left:24px;
+	margin-top:12px;
+}
+nav ul{
+	float:right;
+	width:630px;
+	height:51px;
+    margin-bottom:0;
+}
+nav ul li{
+	float:left;
+	padding:0 8px;
+	margin:0 15px;
+	font-size:16px;
+	height:100%;
+	line-height:40px;
+}
+.marginr0{
+	margin-right:0;
+}
+.border_btm3{
+	border-bottom: 3px solid #f9104f;
+}
+.border_btm3 a{
+	color:#f31256;
+}
+nav ul li:hover{
+	border-bottom: 3px solid #f9104f;
+}
+nav ul li:hover a{
+	color:#f31256;
+}
+
+
+/*---bottom---------------------------------------------*/
+.my_money_botm{
+	width:100%;
+	background:#e3e3e3;
+	height:162px;
+	padding-top:22px;
+	
+}
+.my_money_botm_cen{
+	width:1000px;
+	height:119px;
+	background:url(../images/botmlogo.png) no-repeat 0 0;
+	margin:0 auto;
+	padding-top:17px;
+}
+.my_money_botm_p{
+	width:310px;
+
+	color:#7b7b7b;
+	line-height: 25px;
+	margin:0 125px;
+	float:left;
+}
+.my_money_botm_p1{
+	float:right;
+	width:405px;
+	margin:0;
+}
+
+.my_m_main_cen_cen dl{
+	float:left;
+	width:250px;
+	min-height:225px;
+	color:#5d5d5d;
+}
+
+.my_m_main_dldt{
+	background:url(../images/youshi.png) no-repeat center center;
+	width:82px;
+	height:81px;
+	margin:0 auto;
+}
+.my_m_main_dldd1{
+	height:68px;
+	font-size:26px;
+	text-align: center;
+	line-height: 68px;
+}
+.my_m_main_dldd2{
+	font-size: 16px;
+    text-align: left;
+    line-height: 28px;
+    /*padding-left: 30px;*/
+}
+.dt2{
+	background-image: url(../images/jieshao.png);
+}
+.dt3{
+	background-image: url(../images/people.png);
+}
+
+.about_nav_pad .dt4{
+	background-image: url(../images/mmejinrong.png);
+}
+.about_nav_pad .dt5{
+	background-image: url(../images/people.jpg);
+}
+.about_nav_pad .dt6{
+	background-image: url(../images/pinpaishow.jpg);
+}
+
+
+/*---返回顶部---------------------------------*/
+.erweima_hide{
+	width:40px;
+	height:275px;
+	position:fixed;
+	right:0;
+	top:30%;
+	z-index: 100;
+}
+.erweima_hhhh{
+	width:100%;
+	height:100%;
+	position: relative;
+}
+.up_hide{
+	float: left;
+	width:40px;
+	height:40px;
+	background:pink url(../images/show.png) no-repeat 0 0;
+	cursor: pointer;
+}
+
+
+.body_right{
+	width:59px;
+	height:275px;
+	background:#e5faff;
+	float:left;
+	z-index:999;
+	display:none;
+}
+
+.body_rightdl{
+	width:100%;
+	height:88px;
+	margin-top:35px;
+}
+
+.body_rightdl dt{
+	width:43px;
+	height:43px;
+	margin:0 auto;
+	background:url("../images/rightkefu.png") no-repeat 0 0;
+}
+.body_rightdl dd{
+	color:#797a7c;
+	text-align: center;
+	line-height:20px;
+	margin:0;
+}
+.body_rightdl1 dt{
+	background-image:url("../images/erweima.png");
+}
+.jiantou{
+	margin-top:-30px;
+	cursor: pointer;
+}
+.jiantou img{
+	width:35px;
+	height:28px;
+	margin-left:13px;
+}
+
+.br_top{
+	top:200px;
+}
+
+
+.erweima{
+	width:90px;
+	position:absolute;
+	top:45px;
+	right:60px;
+	background:#fff;
+	display:none;
+	height:330px;
+}
+.erweima dl{
+	height:100px;
+	width:100%;
+	padding-top:6px;
+}
+.erweima dl dt{
+	margin:0 auto;
+	width:80px;
+	height:80px;
+}
+.erweima dl dt img{
+	width:80px;
+}
+.erweima dl dd{
+	text-align: center;
+	height:30px;
+	line-height:30px;
+	margin:0;
+}
+
+

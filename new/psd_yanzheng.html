@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="renderer" content="webkit" /> 
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+</head>
+<title>忘记密码——验证</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/login.css" rel="stylesheet" type="text/css" />
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<script src="./js/jquery.min.js"></script>
+<script src="js/angular-1.0.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/md5.js"></script>
+<script src="./js/validate.js"></script>
+
+<body  ng-app> 
+
+	<div ng-include="'./header.html'"></div>  
+	<div id='main'>
+
+		<div class="content" style="height: 383px">
+			<div class="login psd_yz">
+				<div class="psd_yz_sf">
+					<ul class="psd_yz_ul">
+						<li class="psd_yz_ulred">身份验证</li>
+						<li style="margin:0 25px">填写验证码</li>
+						<li>重设密码</li>
+					</ul>
+					<ul class="psd_yz_ul1">
+						<li style="display:block">
+							<P class="psd_yz_ul1p">为了保障您的账户安全，请填写身份证号进行身份认证</P>
+							<input type="text" class="psd_yz_ul1sf" placeholder="请输入身份证号" id="idnbr"/>
+							<a href="javascript:;" onclick="verifyIdnbr()" class="forget_psd_next psd_yz_sfnext">下一步</a>
+						</li>
+						<li>
+							<P class="psd_yz_ul1p">将向您<span class="tel_yzm"></span>发送验证码</P>
+							<input type="text" class="psd_yz_ul1yzm" placeholder="请输入验证码" id="checkcode" />
+							<a href="javascript:;" class="psd_yz_ul1yzm psd_yz_ul1btn" style="display:block;" id="btn_checkcode" />获取验证码</a>
+							<a href="" class="forget_psd_next psd_yz_sfnext psd_yz_btnext" onclick="checkcode()">下一步</a>
+						</li>
+						<li>
+							<P class="psd_yz_ul1p">请重新输入登录密码</P>
+							<input type="password" class="psd_yz_ul1sf psdchangtext" placeholder="6-16位数字、字母或符号组合" id="resetpassword" />
+							<span class="psd_text"></span>
+							<a href="javascript:;" class="forget_psd_next psd_yz_sfnext" onclick="resetpassword()">下一步</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="erweima">
+		<dl>
+			<dt><img src="images/iPhone.png"/></dt>
+			<dd style="font-size:12px;">iPhone下载</dd>
+		</dl>
+		<dl>
+			<dt><img src="images/Andrio.png"/></dt>
+			<dd style="font-size:12px;">安卓下载</dd>
+		</dl>
+		<dl>
+			<dt><img src="images/wx_gong.png"/></dt>
+			<dd style="font-size:12px;">微信公众号</dd>
+		</dl>
+	</div>
+<!-- 模态框（Modal） -->
+
+	<div ng-include="'./footer.html'"></div>  
+</body>
+
+<script>
+
+	if(getCookie('isrealname')=='1')
+	{
+		$(".psd_yz_ul li").eq(0).addClass("psd_yz_ulred").siblings().removeClass("psd_yz_ulred");
+		$(".psd_yz_ul1 li").eq(0).show().siblings().hide();
+	}
+	else
+	{
+		$(".psd_yz_ul li").eq(1).addClass("psd_yz_ulred").siblings().removeClass("psd_yz_ulred");
+		$(".psd_yz_ul1 li").eq(1).show().siblings().hide();
+	}
+	var telnumber = getCookie('forget_tel');
+	var tel = telnumber.substr("0","2"),num = telnumber.substr("8","10"); 
+	telnumber = tel+"****"+num;
+	$(".tel_yzm").html(telnumber);
+
+	var disable = true;
+	$(".psd_yz_ul1btn").click(function(){	
+		var i = 59,timer;
+		if(disable){
+			disable = false;
+			$(this).css({"background":"#868383","cursor":"auto"});
+			var tel=getCookie('forget_tel');
+			checkcode_pc(tel,12);
+			timer = setInterval(function(){
+			$(".psd_yz_ul1btn").text(i+"秒后重新获取").attr('disabled',true);
+			
+			i--;
+			if(i < 0){
+				clearInterval(timer);
+				$(".psd_yz_ul1btn").css({"background":"#ff445f"});
+				$(".psd_yz_ul1btn").text("重新发送").attr('disabled',false);
+				disable = true;
+			}
+			},1000);	
+		}
+	});
+	$(".psd_text").click(function(){
+		if($(".psdchangtext").attr("type") == "password"){
+			$(".psdchangtext").attr("type","text");
+		}else{
+			$(".psdchangtext").attr("type","password");
+		}
+		
+	});
+
+
+    function verifyIdnbr(){
+        var idnbr = $('#idnbr').val();
+        var phone = getCookie('forget_tel');
+        if(idnbr == ''){
+            alertmsg('请输入身份证号！');
+            return;
+        }
+        $.ajax({
+            url : data_json.fp_VerificationIdCard_pc,
+            type : 'post',
+            dataType : 'json',
+            data : {
+                version : app_data.version,
+                logintel : getCookie('forget_tel'),
+                idcard : idnbr
+            },
+            success : function(data){
+                if (data.code=='000') {
+                    alertmsg('验证成功！');
+                     $("#datamsgModal").on('hidden.bs.modal', function () {
+				         setCookie('forget_idnbr',idnbr)
+	                     $(".psd_yz_ul1 li").eq(1).show().siblings().hide();
+						 $(".psd_yz_ul li").eq(1).addClass("psd_yz_ulred").siblings().removeClass("psd_yz_ulred");
+			          });
+                    
+                } else {
+                    alertmsg('验证失败！');
+                    return;
+                }
+            },
+            error : function(e) {
+                alertmsg('验证失败！');
+                return;
+            }
+        })
+    }
+    function checkcode(){
+        var phone = getCookie('forget_tel');
+        var checkcode = $('#checkcode').val();
+        if(checkcode == ''){
+            alertmsg('请输入验证码！');
+            return;
+        }
+        $.ajax({
+            url : data_json.fp_VerificationCheckCode_pc,
+            type : 'post',
+            dataType : 'json',
+            data : {
+                version : app_data.version,
+                logintel : phone,
+                checkcode : checkcode
+            },
+            success : function(data){
+                if (data.code=='000') {
+                	
+                    alertmsg('验证成功！');
+                     $("#datamsgModal").on('hidden.bs.modal', function () {
+				          setCookie('foget_checkcode',checkcode);
+	                     $(".psd_yz_ul1 li").eq(2).show().siblings().hide();
+						 $(".psd_yz_ul li").eq(2).addClass("psd_yz_ulred").siblings().removeClass("psd_yz_ulred");
+						 $(".psd_yz_ul1p").html("请重新输入登录密码");
+			          });
+                   
+                } else {
+                    alert('验证失败！');
+                }
+            },
+            error : function(e) {
+               alert('验证失败！');
+            }
+        })
+    }
+    function resetpassword(){
+        var phone = getCookie('forget_tel');
+        var checkcode = getCookie('foget_checkcode');
+        var idnbr = getCookie('forget_idnbr');
+        var resetpassword = $('#resetpassword').val();
+
+        if(resetpassword == ''){
+            alertmsg('密码不能为空！');
+            return;
+        }
+        if(!checkSubmitPass(resetpassword))
+        {
+        	alertmsg('密码格式不正确');
+        	return;
+        }
+        resetpassword= hex_md5(resetpassword)
+        $.ajax({
+            url : data_json.forgetpassword_pc,
+            type : 'post',
+            dataType : 'json',
+            data : {
+                version : app_data.version,
+                logintel : phone,
+                checkcode : checkcode,
+                idcard : idnbr,
+                password : resetpassword
+            },
+            success : function(data){
+                if (data.code=='000') {
+                    alertmsg('重置密码成功！');
+                     $("#datamsgModal").on('hidden.bs.modal', function () {
+                     	window.location.href='login.html'
+		            });
+                } else {
+                    alertmsg('密码修改失败！');
+                }
+            },
+            error : function(e) {
+                 alertmsg('密码修改失败！');
+            }
+        })
+    }
+</script>

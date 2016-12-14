@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="renderer" content="webkit" /> 
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+</head>
+<title>我的账户-我的项目</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/head_one.css" rel="stylesheet" type="text/css" />
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/my_account.css" />
+<link rel="stylesheet" type="text/css" href="css/all_item.css"/>
+<link rel="stylesheet" type="text/css" href="css/pikaday.css"/>
+
+<script type="text/javascript" src="js/pikaday.min.js"></script>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/angular-1.0.1.min.js"></script>
+<script src="./js/angular-route.min.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/config.js"></script>
+<script type="text/javascript" src="js/validate.js" ></script>
+<script type="text/javascript" src="js/all_item.js" ></script>
+<body  ng-app="Mejinrong">
+    <div ng-include="'head_one.html'"></div>
+	<div ng-include="'nav.html'"></div>
+	<div ng-include="'service_nav.html'"></div>
+	
+	<div class="my_account_main">
+		
+		<div ng-include="'left_nav.html'" ng-init="wealthnav='my_account_mainleft_red'" ></div>
+		<div class="my_account_mainright" ng-controller="assetsdetail" >
+			<div class="my_account_mr">
+				<dl class="my_account_mrdl">
+					<dt>净赚收益</dt>
+					<dd><font ng-bind="data.earning"></font>元</dd>
+				</dl>
+				<dl class="my_account_mrdl my_account_mrdl1">
+					<dt>待收收益</dt>
+					<dd><font ng-bind="data.duein_total"></font>元</dd>
+				</dl>
+				<dl class="my_account_mrdl my_account_mrdl2">
+					<dt>已收利息</dt>
+					<dd><font ng-bind="data.profit_amount"></font>元</dd>
+				</dl>
+				<div class="my_account_search">
+					<form>
+						<p class="my_account_kind">类型：</p>
+						<div class="dropdown">
+							<button class="btn btn-default dropdown-toggle my_account_choose" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							    请选择
+							</button>
+						    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							    <li><a href="javascript:;" option-type='0' id="searoption0">全部</a></li>
+							    <li><a href="javascript:;" option-type='1' id="searoption1">进行中</a></li>
+							    <li><a href="javascript:;" option-type='2' id="searoption2">已完成</a></li>
+						    </ul>
+						</div>
+						<input type="text" id="start_date" class="my_account_date"/>至
+						<input type="text" id="end_date" class="my_account_date"/>
+						<input type="button" class="my_account_sub" value="搜索" onclick="searchinvest()" />
+					</form>
+				</div>
+				<div class="my_account_mr_botm" ng-controller="invests" >
+				<table width="847">
+					<thead>
+						<tr>
+							<td width="130" style="text-indent:24px">项目</td>
+							<td width="120" align="center">协议出借利率</td>
+							<td width="100" align='center'>出借金额</td>
+							<td align='center' width="110">剩余天数</td>
+							<td align='center'>预期收益</td>
+							<td width="230">时间</td>
+						</tr>
+					</thead>
+					<tbody class="tbody" id="investlist" ng-show="list != ''" >
+							<tr style='border-bottom:1px dashed #c9c9c9' ng-repeat="x in list">
+							<td height='81' align='center' ng-bind="x.protuct_name"></td>
+							<td align='center' ng-bind="x.years_income"></td>
+							<td align='center' ng-bind="x.invest_money+'元'"></td>
+							<td align='center' ng-bind="x.remaining_days"></td>
+							<td align='center' ng-bind="x.expire_profit+'元'"></td>
+							<td  colspan='2' style="font-size: 12px;">预定时间：<span ng-bind="x.reserve_date"></span><br/>完成时间：<span ng-bind="x.trade_end_date"></span></td>
+						</tr>
+						 <!--<tr ng-show="list != ''">
+						 	<td colspan="3" height="50"></td>
+				              <td colspan="3" align="center">		               
+					                <a href="{{nextpage}}" ng-show='hasnextpage'><下一页></a>
+					                                        第<span ng-bind="page"></span>页
+					                <a href="{{prepage}}" ng-show="hasprepage"><上一页></a>
+				               </td>
+				          </tr>-->
+					</tbody>
+				</table>
+				<div class="pre_next" ng-show="list != ''">
+					<a href="{{nextpage}}" ng-show='hasnextpage'>&nbsp;&nbsp;<下一页>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+					<div>第 <span ng-bind="page"></span> 页</div>
+	              	<a href="{{prepage}}" ng-show="hasprepage">&nbsp;&nbsp;<上一页>&nbsp;&nbsp;&nbsp;&nbsp;
+	              	</a>
+	                 <a href="invests.html" >[首页]&nbsp;&nbsp;&nbsp;&nbsp;</a>
+	                 
+				</div>
+				<div class="my_account_tosee"  ng-show="list == ''">
+					<dl class="my_account_tosee_dl">
+						<dt><img src="images/to-see.png"/></dt>
+						<dd class="run_tosee"><a href="prducts.html">快去看看吧</a></dd>
+						<dd class="wujilu">无项目记录</dd>
+					</dl>
+				</div>
+				<input type="hidden" id="searchtype"></input>
+			</div>
+			</div>
+		</div>
+	</div>
+	
+	<div ng-include="'./main_bottom.html'"></div>  
+	<div ng-include="'./footer.html'"></div>
+ </body>
+ <script type="text/javascript" src="./js/my_account01.js" ></script>
+<script type="text/javascript">
+ 	 var app = angular.module('Mejinrong', []);
+ 	 var page=getQueryString('page');
+ 	if(page==null)
+ 		page=1;
+  var page=getQueryString('page');
+  var type=getQueryString('type');
+  var start_date=getQueryString('start_date');
+  var end_date=getQueryString('end_date');
+
+  var where="invests.html?index=true";
+  if(page==null||page=='')
+    page=1;
+  if(type==null||type=='')
+    type=0;
+ $('#searchtype').val(type);
+ var seracheop="#searoption"+type;
+$(".my_account_choose").text($(seracheop).text());
+
+  var parmars={};
+  parmars={version:app_data.version,tokenid:getCookie('tokenid'),current:page}
+   if((type!=null&&type!='')&& type!=0)
+   {
+      parmars.type=type;
+      where+="&type="+type;
+   }
+    
+   if(start_date!=null)
+   {
+     parmars.start_date=start_date;
+      where+="&start_date="+start_date;
+      $('#start_date').val(start_date)
+
+   }
+   
+   if(end_date!=null)
+   {
+     parmars.end_date=end_date;
+      where+="&end_date="+end_date;
+       $('#end_date').val(end_date)
+   } 
+
+    app.controller('invests', function($scope) {
+		$.ajax({
+		      url:data_json.invests_pc,
+		      type:'post',
+		      async:false,
+		      data:parmars,
+		      dataType:'json',
+		      success:function(data){
+		        if(data.code=='000')
+		        {
+		        	if(data.list!='')
+		        	{
+		        		
+					    $scope.list = data.list;
+					      $scope.page = page;
+					    $scope.hasnextpage = data.hasnextpage;
+					    if(data.hasnextpage=='true')
+			              {
+			                   if(page!=null)
+			                    {
+			                      nextpage=where+"&page="+(parseInt(page)+1);
+			                    }
+			                    $scope.nextpage=nextpage;
+			              }
+			                
+			              if(page=='1')
+			              {
+			                $scope.hasprepage = 'false';
+			              }
+			              else
+			              {
+			                if(page!=null)
+			                {
+			                  prepage=where+"&page="+(parseInt(page)-1);
+			                }
+			                $scope.prepage=prepage;
+			                $scope.hasprepage = 'true';
+			              }
+		        	}
+		        	else
+		        	{
+		        		$scope.list = data.list;
+		        	}
+				  	
+		        }
+		      }
+		});
+	});
+	app.controller('assetsdetail', function($scope) {
+		$.ajax({
+		      url:data_json.assetsdetail_pc,
+		      type:'post',
+		      async:false,
+		      data:{version:app_data.version,tokenid:getCookie('tokenid'),current:1,type:1},
+		      dataType:'json',
+		      success:function(data){
+		        if(data.code=='000')
+		        {
+		        	$scope.data = data;
+		        }
+		      }
+		});
+	});
+    $(".dropdown-menu li").click(function(){
+		$(".my_account_choose").text($(this).find("a").text());
+		var data_option=$(this).find("a").attr('option-type');
+		$('#searchtype').val(data_option);
+		if($(".dropdown").hasClass("open")){
+			$(".my_account_choose").css("background","url('images/search_down.png') no-repeat 107px center");
+		}else{
+			$(".my_account_choose").css("background","url('images/search_up.png') no-repeat 107px center");
+		}
+	});
+	function searchinvest()
+	{
+		var where="invests.html?index=true";
+		var searchtype=$('#searchtype').val();
+		var start_date=$('#start_date').val();
+		var end_date=$('#end_date').val();
+		if(!IsDate(start_date) && start_date!='' &&start_date!=null)
+        {
+            alertmsg('请输入正确的开始日期')
+            return false;
+        }    
+	    if(!IsDate(end_date) && end_date!='' &&end_date!=null)
+	    {
+	        alertmsg('请输入正确的结束日期')
+	        return false;
+	    }
+	    if(!checkSEtime(start_date,end_date))
+	    {
+	        alertmsg('开始时间不能大于结束时间')
+	        return false;
+	    }
+	    if(searchtype!=null)
+        {
+          where+="&type="+searchtype;
+        }
+        if(start_date!='')
+        where+="&start_date="+start_date;
+    	if(end_date!='')
+        where+="&end_date="+end_date;
+        page=1
+       if(page!=null)
+        {
+          where+="&page="+page;
+        }
+
+	    window.location.href=where
+
+	}
+</script>
+
+<script type="text/javascript">
+   // seeMore();
+</script>

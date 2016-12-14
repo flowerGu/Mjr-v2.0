@@ -1,0 +1,56 @@
+.worker ul li table tr td{
+	width: 150px;
+	height: 50px;
+}
+.worker ul li{
+	width: 867px;
+	margin: 20px 0;
+}
+.worker ul li table tr td p{
+	padding:8px 0;
+}
+.worker ul li table tr td.product_title{
+	width: 250px;
+	text-align: center;
+	position: relative;
+}
+.product_name{
+	font-size: 2.4em;
+}
+.product_period{
+	font-size: 1.4em;
+}
+.income_title{
+	font-size: 1.4em;
+}
+.income{
+	font-size: 2.4em;
+	color: rgb(254,76,72);
+}
+.cycle_title{
+
+}
+.cycle{
+
+}
+.invest_title{
+
+}
+.invest_money{
+
+}
+
+.worker{
+	margin-top: 60px;
+	width: 867px;
+	margin: 0 auto;
+	color: rgb(96,96,96);
+}
+.product_title img{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+
+

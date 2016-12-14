@@ -1,0 +1,21 @@
+.bank_list ul li{
+	float: left;
+	border:1px solid #ddd;
+	margin-right: 10px;
+	margin-top: 10px;
+	padding: 15px;
+	width: 150px;
+}
+.bankdetail img{
+	height: 30px;
+}
+.addcard{
+	width: 61px;
+	margin: 0 auto;     
+	cursor: hand;
+	cursor: pointer;     
+	height: 92px;
+}
+.bank_list{
+	min-height: 321px;
+}

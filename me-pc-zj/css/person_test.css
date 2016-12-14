@@ -1,0 +1,146 @@
+.my_account_mainright{
+	margin-bottom: 55px;
+}
+.person_t_top{
+	border:1px solid #e8e8e8;
+	min-height:50px;
+	height:123px;
+	padding:0 25px;
+}
+.person_t_cen{
+	margin:25px 0;
+}
+.person_t_top tr:first-child{
+	border-bottom:1px solid #e8e8e8;
+}
+.person_t_top tr td{
+	font-size:16px;
+	color:#9a9a9a;
+}
+.person_t_top tr td a{
+	color:#585858;
+}
+
+/*----认证-------------------------------*/
+.pt_renzheng{
+	height:249px;
+	padding:23px 28px 0 44px;
+}
+.pt_renzheng h3{
+	font-size:16px;
+	font-weight: 300;
+	color:#5e5e5e;
+	width:775px;
+	height:51px;
+}
+.pt_renzheng h3 a{
+	float:right;
+	color:#fc2956;
+}
+.pt_renzheng .pt_rzh_text{
+	width:394px;
+	height:35px;
+	border:1px solid #bababa;
+	color:#646464;
+	font-size:16px;
+}
+.pt_renzheng .pt_rzh_marg{
+	margin:23px 0;
+}
+.pt_renzheng span{
+	font-size:12px;
+	line-height:23px;
+	float:right;
+	margin-top:22px;
+}
+.pt_renzheng .pt_renzheng_btn{
+	width:400px;
+	height:30px;
+	background:#fc2956;
+	color:#fff;
+	border:0;
+	border-radius: 4px;
+	font-size:18px;
+	display:block;
+	text-align:center;
+	line-height:30px;
+}
+
+
+
+/*----email-------------------------------*/
+.pt_emailset{
+	height:208px;
+}
+.pt_emailset p{
+	height:30px;
+	line-height:25px;
+	font-size:14px;
+	color:#5e5e5e;
+}
+
+/*----地址-------------------------------*/
+
+.pt_address{
+	height:480px;
+	min-height:480px;
+}
+.pt_address h3{
+	height:20px;
+}
+.pt_address table tr{
+	height:76px;
+}
+.pt_address .pt_rzh_address{
+	height:97px;
+}
+.pt_address table tr td{
+	color:#606060;
+	font-size:16px;
+}
+select{
+	width:125px;
+	height:40px;
+	border-radius: 4px;
+	color:#606060;
+}
+
+/*----充值-----------------------------------*/
+.chzi_chong{
+	height:320px;
+}
+.chzi_chong .chongzhi{
+	width:105px;
+	float:left;
+	line-height:25px;
+}
+.chzi_chong .chongzhi img{
+	margin-top:-6px;
+}
+.chongzhi{
+	margin-right:75px;
+}
+.chzi_chong .chzigray{
+	color:#5f5f5f;
+	
+}
+.chzi_chong h3{
+	height:34px;
+	border-bottom:1px solid #dfdfdf;
+}
+
+.chzi_chong .chzi_money{
+	height:63px;
+	border:0;
+	font-size:16px;
+	line-height:75px;
+	width:400px;
+}
+.chzi_qichong{
+	color:#5f5f5f;
+	font-size:12px;
+	height:35px;
+	text-align:right;
+	width:400px;
+}
+

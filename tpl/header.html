@@ -1,0 +1,38 @@
+﻿<style>
+	.nav ul li a.red{color:red}
+</style>
+	
+<script type="text/javascript">
+	$(function() {
+		var index=getQueryString('index');
+		if(index=='5'){
+			$('#online_chong').addClass('red');
+		}else if(index=='3'){
+			$('.third_page').addClass('red');
+		}
+		else{
+			$('.fisrt_page').attr('class',' red')
+		}
+		var tokenid=getCookie('tokenid');
+	      if(tokenid==null || tokenid=='' || tokenid == 'undefined') 
+	      {
+	      	$('#online_chong').attr('href','first_login.html?index=5');
+	      }
+	      else
+	      {
+	     	$('#online_chong').attr('href','show_login.html?index=5');
+	      }
+	})				
+</script>
+<div class="down_header">
+	<div class="down_wrap clearfix nav">
+		<h1><img src="images/download_03.jpg"></h1>
+		<ul>
+			<li><a href="index.html" class="fisrt_page">首页</a></li>
+			<li>|</li>
+			<li><a href="JavaScript:;"class="second_page" id='online_chong'>在线充值</a></li>
+			<li>|</li>
+			<li><a href="about_us.html?index=3"class="third_page">关于我们</a></li>
+		</ul>
+	</div>
+</div>

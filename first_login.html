@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    	<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<title>在线充值</title>
+		<meta name="keywords" content="Me金融,Me金融官网,Me金融投资">
+		<meta name="description" content="Me金融是一家专业的互联网金融投资服务平台，为民信公司旗下知名品牌。平台为广大用户提供便捷、稳定服务；平台采用小额分散机制，严格的风控体系，资金三方托管，竭诚为客户的投资提供服务。">
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+		<link href="css/base.css" rel="stylesheet" type="text/css" />
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+		<link href="css/largeRechargeLogin/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    	<link href="css/largeRechargeLogin/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    	<link href="css/largeRechargeLogin/styles.css" type="text/css" rel="stylesheet"/>
+    	<link href="css/largeRechargeLogin/styles2.css" type="text/css" rel="stylesheet"/>
+     	<script src="js/jquery-1.9.0.min.js"></script>
+      	<script src="js/functions.js"></script>
+      	<script src="js/config.js"></script>
+    	<script src="js/md5.js"></script>
+    	<script src="js/angular-1.0.1.min.js"></script>
+    	
+	</head>
+	<body ng-app>
+		<div ng-include="'./tpl/header.html'"></div>  
+		<div class="rechage_index1">   
+			<div class="rechage_con1">   
+				<!--pub s-->
+	            <div id="u34" class="opacity_bg ax_形状" >
+	              	<!-- 账号输入框 (文本框(单行)) -->
+		            <div id="u64" class="ax_文本框_单行_" data-label="账号输入框">
+		              <input id="u64_input" type="text" value=""  placeholder='请输入用户名' tabindex="1" maxlength="11" />
+		            </div>
+		            <!-- 密码输入框 (文本框(单行)) -->
+		            <input id="u47_input" type="password" value="" placeholder='请输入密码' tabindex="2" maxlength="16" />
+		            <div id="u38" class="ax_文本框_单行_ clearfix" data-label="验证框">
+		              <input id="u38_input" type="text" placeholder="请输入验证码" tabindex="3" />
+		              <!-- 验证码 (形状) -->
+			           <img id="u43_img" class="img "onclick="getimg()"style='cursor: pointer;' unselectable="on" style="-moz-user-select:none;" onselectstart="return false;" src=""/>       
+		            </div>
+		            <div id="u36" class="ax_形状" onclick="submit()">
+		                  <a href="javascript:;">立即登录</a></span>
+		            </div>
+		            <div id="u17" class="ax_文本">
+		              <div id="u18" class="text" style="color:#fff">
+		                 <p ><span>温馨提示：</span></p>
+		                  <p ><span>1.请使用手机Me金融账号登录</span></p>
+		                  <p><span>2.如您没有Me金融账号，请在移动端注册</span>
+		                  </p>
+		                  <p><span>3.如您忘记密码，请在Me金融移动端找回</span>
+		                  </p>
+		              </div>
+		            </div>
+		           <!--pub end-->
+	            </div>
+			</div>
+		</div>   
+		<div ng-include="'./tpl/footer.html'"></div>
+    <script type="text/javascript">
+
+      getimg();
+    
+		
+		$(window).keydown(function (e) { 
+		if (e.which == 13) { 
+		submit() 
+		} 
+		}) 
+		
+    </script>  
+	</body>
+</html>

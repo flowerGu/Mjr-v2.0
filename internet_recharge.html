@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html  ng-app>
+	<head>
+		<meta charset="utf-8" />
+		<title>在线充值</title>
+		<meta name="keywords" content="Me金融,Me金融官网,Me金融投资">
+		<meta name="description" content="Me金融是一家专业的互联网金融投资服务平台，为民信公司旗下知名品牌。平台为广大用户提供便捷、稳定服务；平台采用小额分散机制，严格的风控体系，资金三方托管，竭诚为客户的投资提供服务。">
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+		<link href="css/base.css" rel="stylesheet" type="text/css" />
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+		 <link href="css/internet_recharge/styles.css" type="text/css" rel="stylesheet"/>
+	    <link href="css/data/styles.css" type="text/css" rel="stylesheet"/>
+	     <script src="js/jquery-1.7.0.min.js"></script>
+      	<script src="js/functions.js"></script>
+    	<script src="js/config.js"></script>
+    	 <script src="js/template.js"></script>
+    	 <script src="js/json2.js"></script>
+    	 <script src="js/angular-1.0.1.min.js"></script>
+    	 
+    	 <script id="internet_recharge" type="text/html">
+    	 	<hr style="margin-bottom: 60px;">
+			<div class="rechage_con" style="height:578px; width:100%">
+				<!-- Unnamed (形状) -->
+		      <div id="u4" class="ax_形状">
+		      
+		        <!-- Unnamed () -->
+		        <div id="u5" class="text">
+		          <p><span></span></p>
+		        </div>
+		      </div>
+				 <!-- Unnamed (形状) -->
+		      <div id="u19" class="ax_形状" >
+		        <!-- <img id="u19_img" class="img " src="images/showLoginPage/u26.png"/> -->
+		        <!-- Unnamed () -->
+		        <div id="u20" class="text">
+		          <p><span></span></p>
+		        </div>
+		      </div>
+
+		      <!-- Unnamed (形状) -->
+		      <div id="u21" class="ax_文本">
+		        <img id="u21_img" class="img " src="images/transparent.gif"/>
+		        <!-- Unnamed () -->
+		        <div id="u22" class="text">
+		          <p><span>欢迎回来</span><span>{{user_name}}</span><span></span><span> ，您好！</span></p>
+		        </div>
+		      </div>
+
+		      <!-- Unnamed (形状) -->
+		      <div id="u23" class="ax_文本">
+		        <img id="u23_img" class="img " src="images/transparent.gif"/>
+		        <!-- Unnamed () -->
+		        <div id="u24" class="text">
+		          <p><span>{{user_account}}</span></p>
+		        </div>
+		      </div>
+
+		      <!-- Unnamed (HTML按钮) -->
+		      <div id="u25" class="ax_html__">
+		        <input id="u25_input" type="submit" value="退出" style="cursor:pointer" />
+		      </div>
+
+		      <!-- Unnamed (Image) -->
+		      <div id="u26" class="ax_image">
+		        <img  src="images/01.png"/>
+		        <!-- Unnamed () -->
+		        <div id="u27" class="text">
+		          <p><span></span></p>
+		        </div>
+		      </div>
+
+
+				 <!-- Unnamed (形状) -->
+		      <div id="u28" class="ax_文本">
+		        <img id="u28_img" class="img " src="images/transparent.gif"/>
+		        <!-- Unnamed () -->
+		        <div id="u29" class="text">
+		          <p><span>充值金额：</span></p>
+		        </div>
+		      </div>
+
+		      <!-- Unnamed (文本框(单行)) -->
+		      <div id="u30" class="ax_文本框_单行_">
+		        <input id="u30_input" type="text" value="" onkeyup="value=value.replace(/[^\d.]/g,'')"/>
+		      </div>
+
+		      <!-- Unnamed (形状) -->
+		      <div id="u31" class="ax_文本">
+		        <img id="u31_img" class="img " src="images/transparent.gif"/>
+		        <!-- Unnamed () -->
+		        <div id="u32" class="text">
+		          <p><span>元</span></p>
+		        </div>
+		      </div>
+
+		      <!-- Unnamed (形状) -->
+		      <div id="u33" class="ax_文本">
+		        <img id="u33_img" class="img " src="images/transparent.gif"/>
+		        <!-- Unnamed () -->
+		        <div id="u34" class="text">
+		          <p><span>当前余额：{{balance}}元</span></p>
+		        </div>
+		      </div>
+
+		      <!-- Unnamed (形状) -->
+		      <div id="u35" class="ax_文本">
+		        <img id="u35_img" class="img " src="images/transparent.gif"/>
+		        <!-- Unnamed () -->
+		        <div id="u36" class="text">
+		          <p><span> 提示：</span><span>您正在使用大额充值功能，每笔充值金额最小为{{recharge_low}}元。</span></p>
+		        </div>
+		      </div>
+
+		      <div id="u58" class="ax_形状" style="cursor: pointer;" onclick="gozj()">
+		        <img id="u58_img" class="img " src="images/showLoginPage/u55.png"/>
+		        <!-- Unnamed () -->
+		        <div id="u59" class="text">
+		          <p><span>下一步</span></p>
+		        </div>
+		      </div>
+			</div>
+		</script>
+    	<script type="text/javascript">
+             	$(function(){
+             		
+  		
+              var tokenid=getCookie('tokenid');
+              if(tokenid==null || tokenid=='' || tokenid == 'undefined') 
+              {
+              	 var r=confirm("您还没有登录")
+				  if (r==true)
+				    {
+				    window.location.href='first_login.html';
+				    }
+				  else
+				    {
+				   window.location.href='first_login.html';
+				    }
+              }
+                
+
+               $.ajax({
+	            url:GETAMTLIMIT_JSON_URL,
+	              type:'post',
+	              data:{version:app_data.version,tokenid:getCookie('tokenid')},
+	              dataType:'json',
+	              success:function(data){
+
+	                $.ajax({
+	                   type: "post",
+	                   url: PCGETCUSTOMERINFO_JSON_URL,
+	                   data:{tokenid:getCookie('tokenid')},
+	                   success: function(data2,textStatus,xhr){
+	                      if(data2.code=='000')
+	                      {   
+	                     	var user_detail = $.parseJSON(localStorage.getItem("user_data"));
+		              		 user_detail.user_name=getCookie('user_name');
+
+	                         user_detail.balance=data2.balance;   
+	                         user_detail.user_account=getCookie('user_account');
+				               user_detail.recharge_low=data.recharge_low;
+				               user_detail.recharge_high=data.recharge_high;
+				               localStorage.setItem("user_data", JSON.stringify(user_detail));
+			              	 	var result= template('internet_recharge', user_detail);
+			              	 	  $('.rechage_index').append(result);
+			              		 $('#u25_input').click(function(){
+				                shuaxin();
+				              }) 
+	                      }
+	                   },
+	                   error:function(data){
+	                      // alert('网络超时')
+	                   }
+	            	 });	
+	               
+	              }
+	            });
+
+             	})
+              
+    	</script>
+	</head>
+	<body>
+		<div ng-include="'./tpl/header.html'"></div>
+		<div class="rechage_index" style="height:auto;">
+
+		</div>
+		<div ng-include="'./tpl/footer.html'"></div>
+	</body>
+</html>

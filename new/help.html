@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html  xmlns:ng="http://angularjs.org" id="ng-app">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="renderer" content="webkit" /> 
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+</head>
+<title>帮助中心</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/head_one.css" rel="stylesheet" type="text/css" />
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/my_account.css" />
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/help.css"/>
+
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/angular-1.0.1.min.js"></script>
+<script src="./js/angular-route.min.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/md5.js"></script>
+
+<body  ng-app="Mejinrong">
+    <div ng-include="'head_one.html'"></div>
+	<div ng-include="'nav.html'"></div>
+	<div ng-include="'service_nav.html'"></div>
+
+	<div class="my_account_main" ng-controller="myCtrl" ng-show="list != ''"> 
+		<dl class="help_dl" ng-repeat="x in list">
+			<dt><a href="help_main.html?id={{x.id}}">{{x.class_ch_name}}</a></dt>
+			<dd ng-repeat="y in x.listmain"><a href="help_main.html?id={{y.id}}" title="{{y.title}}">{{y.title}}</a></dd>
+		</dl>
+	</div>
+	<div ng-include="'./main_bottom.html'"></div>  
+	<div ng-include="'./footer.html'"></div>
+</body>
+
+ <script type="text/javascript">
+ 	 var app = angular.module('Mejinrong', []);
+ 	 app.controller('myCtrl', function($scope) {		    
+		    $.ajax({
+		      url:data_json.classificationlist_pc,
+		      type:'post',
+		      async:false,
+		      data:{version:app_data.version,type:2},
+		      dataType:'json',
+		      success:function(data){
+		        if(data.code=='000')
+		        {
+		        	if(data.list!='')
+		        	{
+						$scope.list = data.list;	
+		        	}
+		        	else
+		        	{
+		     			
+		        	}
+				  	
+		        }
+		      }
+		});
+    });
+
+	$(window).ready(function(){
+		 for(var i = 0;i < 6;i++){
+			if(i == 1 || i == 4|| i == 8){
+				$(".help_dl").eq(i).addClass("help_dl_cen");
+			}
+		}
+	})
+	
+</script>
+
+
+
+

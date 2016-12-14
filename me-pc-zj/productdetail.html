@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html ng-app="Mejinrong">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="renderer" content="webkit" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<META HTTP-EQUIV="expires" CONTENT="0">
+	<title>详情</title>
+	<meta name="keywords" content="Me金融,民信Me金融,Me金融理财,互联网金融,投资理财,P2P理财">
+	<meta name="description" content="Me金融-民信公司旗下独立品牌，专业的个性化互联网金融服务平台">
+</head>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/head_one.css" rel="stylesheet" type="text/css" />
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/my_money.css" />
+<link rel="stylesheet" type="text/css" href="css/my_account.css" />
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/angular-1.0.1.min.js"></script>
+<script src="js/functions.js"></script>
+<script src="js/config.js"></script>
+
+<script>
+	$(function() {
+		checkstatus();
+	})
+</script>
+
+<body ng-controller="myCtrl">
+	<div ng-include="'head_one.html'"></div>
+	<div ng-include="'nav.html'"></div>
+	<div ng-include="'right_nav.html'"></div>
+	<div class="my_m_banner">
+		<div class="my_mbanner_main">
+			<div class="my_m_banner_left">
+				<h2 ng-bind="detail.protuct_name"></h2>
+				<div class="my_mbanner_left_cen">
+					<h5>协议出借利率<p ng-bind="detail.years_income | percent "></p></h5>
+					<p ng-bind="'项目期 &nbsp;'+detail.period+' &nbsp;个月'"></p>
+					<div class="my_mb_sanjiao"></div>
+					<div class="my_mbanner_left_tp"></div>
+					<img class="my_mb_tpleft" src="images/tpleft.png" />
+					<img class="my_mb_tpright" src="images/tpright.png" />
+				</div>
+				<p class="my_mbanner_botm"><span>起息日：T+1个工作日</span><span style="margin:0 18px;">退出日：项目期结束后一天</span><span id='syfs'>收益方式：到期一次性还本付息</span></p>
+			</div>
+			<div class="my_m_banner_right">
+				<div class="my_m_b_r_top">
+					<dl>
+						<dt>剩余可出借（元）</dt>
+						<dd>￥<span id="surplus" ng-bind="detail.surplus_invest_mone"></span></dd>
+					</dl>
+					<div class="my_m_bann_boder"></div>
+					<dl>
+						<dt style="width:145px">预计收益（元）</dt>
+						<dd ng-init="name=detail.start_invest_money">￥
+							<font ng-bind="name | benifit:detail.product_cycle:detail.years_income" id="benifit"></font>
+						</dd>
+					</dl>
+				</div>
+				<input id="my_money_b_text" type="number" ng-placeholder="起借金额：{{detail.start_invest_money}}" onkeyup="this.value=this.value.replace(/\D/g,'');" ng-model="name" ng-blur="checkval()" />
+
+				<input id="invest_money" type="hidden" ng-model="name" />
+
+				<a href="javascript:;" ng-click="choosepay()" class="rightaway" id="topay">立即出借</a>
+				<a href="fengxian.html" class="tishi" target="_blank">《Me金融风险提示书》</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="my_m_main">
+		<ul class="my_m_main_top">
+			<li class="my_m_main_lired"><span class="my_m_mian_list"></span>项目介绍</li>
+			<li style="margin-left:40px;"><span class="my_m_mian_list"></span>债权列表</li>
+		</ul>
+		<div class="my_m_main_cen">
+			<div class="my_m_main_cen0" ng-controller="detail">
+				<div class="my_m_main_cen_cen">
+					<dl>
+						<dt class="my_m_main_dldt"></dt>
+						<dd class="my_m_main_dldd1">优势</dd>
+						<dd class="my_m_main_dldd2" ng-show="superiority_short==0">
+							<font ng-bind="data.superiority"></font>
+						</dd>
+						<dd class="my_m_main_dldd2" ng-show="superiority_short==1" style="text-align: center;">
+							<font ng-bind="data.superiority"></font>
+						</dd>
+					</dl>
+					<dl style="margin:0 30px">
+						<dt class="my_m_main_dldt dt2"></dt>
+						<dd class="my_m_main_dldd1">介绍</dd>
+						<dd class="my_m_main_dldd2" ng-show="introduce_short==0">
+							<font ng-bind="data.introduce"></font>
+						</dd>
+						<dd class="my_m_main_dldd2" ng-show="introduce_short==1" style="text-align: center;">
+							<font ng-bind="data.introduce"></font>
+						</dd>
+					</dl>
+					<dl>
+						<dt class="my_m_main_dldt dt3"></dt>
+						<dd class="my_m_main_dldd1">适用人群</dd>
+						<dd class="my_m_main_dldd2" ng-show="useCrowd_short==0">
+							<font ng-bind="data.useCrowd"></font>
+						</dd>
+						<dd class="my_m_main_dldd2" ng-show="useCrowd_short==1" style="text-align: center;">
+							<font ng-bind="data.useCrowd"></font>
+						</dd>
+					</dl>
+				</div>
+				<div class="my_m_main_botm">
+					<div class="my_m_main_botm_left">
+						<p class="my_m_cost" style="line-height:35px">费用</p>
+						<p class="my_m_cost" style="text-align: left;line-height:35px">起借金额<br> 单笔最高可出借
+						</p>
+						<p class="my_m_cost" style="text-align: left;line-height:35px">
+							<span id="startMoney" ng-bind="detail.start_invest_money"></span>元
+							<br><span ng-bind="detail.pre_investment+'万元'"></span>
+						</p>
+
+					</div>
+					<p class="my_m_botm_sever">服务协议</p>
+					<a id="my_m_botm_click" href="reg_xieyi.html" target="_blank">点击查看</a>
+				</div>
+			</div>
+			<div class="my_m_main_cen0" style="display:none" ng-controller="billlist">
+				<table class="my_m_main_zaiwu" ng-repeat="x in list" ng-show="list != ''">
+					<tr class="buycar">
+						<td colspan="4">
+							<font ng-bind="x.debtUse"></font>
+						</td>
+					</tr>
+					<tr class="buycar_mesg">
+						<td width="230">借款金额</td>
+						<td width="225">协议出借利率</td>
+						<td width="280">债务个人情况</td>
+						<td>借款人</td>
+					</tr>
+					<tr class="buycar_mesg1">
+						<td><span ng-bind="x.debtSumAmount"></span>元</td>
+						<td ng-bind="x.debtVearlyRate"></td>
+						<td ng-bind="x.debtidentityType"></td>
+						<td ng-bind="x.debtName"></td>
+					</tr>
+
+
+				</table>
+
+				<div class="pre_next" ng-show="list != ''" style="height:70px;line-height:50px;width:863px;">
+					<a href="javascript:;" ng-click="nextpage()" ng-show="hasnextpage">&nbsp;&nbsp;<下一页>&nbsp;&nbsp;&nbsp;&nbsp;</a>
+					<div>第 <span ng-bind="page"></span> 页</div>
+					<a href="javascript:;" ng-show='hasprepage' ng-click="prepage()">&nbsp;&nbsp;<上一页>&nbsp;&nbsp;&nbsp;&nbsp;
+				          	</a>
+					<a href="javascript:;" ng-click="firstpage()">[首页]&nbsp;&nbsp;&nbsp;&nbsp;</a>
+
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+	<div ng-include="'./main_bottom.html'" style="margin-top:80px"></div>
+
+	<div ng-include="'./footer.html'"></div>
+</body>
+
+<script>
+	var page = getQueryString('page');
+	$(".my_m_main_top li").click(function() {
+		var i = $(this).index();
+		$(this).addClass("my_m_main_lired").siblings().removeClass("my_m_main_lired");
+		$(".my_m_main_cen>div").eq(i).show().siblings().hide();
+	});
+	if (page != null) {
+		$(".my_m_main_top li").eq(1).addClass("my_m_main_lired").siblings().removeClass("my_m_main_lired");
+		$(".my_m_main_cen>div").eq(1).show().siblings().hide();
+	}
+
+	function checkstatus() {
+		var status = getQueryString('status');
+		if (status != 1) {
+			$('#topay').text('售磬').addClass('sellout');
+			document.getElementById('topay').setAttribute('disabled', true);
+			$('#topay').mouseover(function() {
+				$(this).css({
+					'color': '#fff'
+				})
+			})
+			return false;
+		}
+		return true;
+	}
+</script>
+
+<script type="text/javascript">
+	var app = angular.module('Mejinrong', []);
+	app.filter("percent", function() {
+		return function(input) {
+			input = (input * 100).toFixed(2) + '%';
+			return input;
+		}
+	});
+	app.filter("benifit", function() {
+		return function(num, term, year_income) {
+			return form_s_be(num, term, year_income);
+		}
+	});
+	var id = getQueryString('id');
+	var protuctid = getQueryString('protuctid');
+	var name = getQueryStrZH('name');
+	//	console.log(name)
+	var page = getQueryString('page');
+	if (page == null) {
+		page = 1;
+	}
+
+	$.ajax({
+		url: data_json.productintroduce_pc,
+		type: 'post',
+		async: false,
+		data: {
+			version: app_data.version,
+			productId: protuctid
+		},
+		dataType: 'json',
+		success: function(data) {
+			app.controller('detail', function($rootScope) {
+				if (data.code == '000') {
+					$('title').html(data.protuct_name)
+					$rootScope.data = data;
+					if (data.productName == '月月享') {
+						$('#syfs').html('收益方式：按月付息，到期还本');
+					}
+					if (data.superiority.length < 17)
+						$rootScope.superiority_short = '1';
+					else
+						$rootScope.superiority_short = '0';
+					if (data.introduce.length < 17)
+						$rootScope.introduce_short = '1';
+					else
+						$rootScope.introduce_short = '0';
+					if (data.useCrowd.length < 17)
+						$rootScope.useCrowd_short = '1';
+					else
+						$rootScope.useCrowd_short = '0';
+				} else {
+					$rootScope.data = data;
+				}
+			});
+		},
+		error: function() {}
+	});
+
+	$.ajax({
+		url: data_json.productdetail_pc,
+		type: 'post',
+		async: false,
+		data: {
+			version: app_data.version,
+			id: id
+		},
+		dataType: 'json',
+		success: function(data) {
+			if (data.code == '000') {
+				$('title').html(data.protuct_name + '【Me金融】')
+				app.controller('myCtrl', function($rootScope) {
+					$rootScope.detail = data;
+					$rootScope.isShow = islogin(getCookie('tokenid'));
+					//出借按钮
+					$rootScope.choosepay = function() {
+						if ($('#topay').attr('disabled')) {
+							return;
+						}
+						if (!islogin(getCookie("tokenid"))) { //判断未登录
+							alertmsg('您还未登录', true);
+							return false;
+						}
+
+						var id = getQueryString('id');
+						var amount = $('#my_money_b_text').val().trim();
+						var surplus = $rootScope.detail.surplus_invest_mone;
+						var startMoney = $rootScope.detail.start_invest_money;
+						if (parseFloat(amount) <= 0 || amount == '') {
+							alertmsg('出借金额必须大于零');
+							return false;
+						}
+
+						if (parseFloat(amount) > parseFloat(surplus)) {
+							alertmsg('出借金额不能大于剩余金额');
+							//todo 换成 调用ajax
+							$("#datamsgModal").on('hidden.bs.modal', function() {
+								window.location.reload();
+							});
+							return false;
+						}
+
+						if (parseFloat(amount) < parseFloat(startMoney)) {
+							alertmsg('出借金额不能小于起借金额');
+							return false;
+						}
+						if(parseFloat(amount) > $rootScope.detail.pre_investment*10000){
+							alertmsg('出借金额不能大于最高出借金额');
+							return false;
+						}
+						var step = $rootScope.detail.stepping;
+						if ((parseFloat(amount) - parseFloat(startMoney)) % step != 0) {
+							var my_money_b_text = parseInt((amount - startMoney) / step) * step + startMoney;
+							$('#my_money_b_text').val(my_money_b_text)
+							return false;
+						}
+
+						var obj_zj = iszhongjin();
+						if (obj_zj.is_realname == false) { //实名绑卡
+							alertmsg('未实名认证')
+							return false;
+						}
+						if (obj_zj.is_binding == false) { //实名绑卡
+							alertmsg('未绑卡')
+							return false;
+						}
+
+
+						alertmsgDalog('为执行2015年12月人民银行发布的《非银行支付机构网络支付业务管理办法》,在您出借时，建议优先使用银行卡快捷支付，如果您有账户余额也可以选择账户余额。', '余额支付', '银行卡快捷支付')
+						$('#leftbutton').click(function(argument) { //点击余额支付判断他的用户等级
+							var obj_zj = iszhongjin();
+							if (obj_zj.accredit_bid_status == false) { //授权
+								alertmsg('没有授权')
+								return false;
+							}
+
+							if (obj_zj.zj_user_level != '3') { //用户等级没达到弹窗
+								alertmsgDalog('您需要达到三类客户标准，需要完成至少四家银行的银行卡绑定。', '再看看', '去绑卡')
+								$('#myModalLabel').html('客户类型提醒')
+								$('#rightbutton').click(function function_name(argument) { //
+									window.location.href = 'bankinfo.html';
+								})
+								return false;
+							} else { //用户等级达到了
+								var level = '';
+								switch (obj_zj.zj_user_level) {
+									case '1':
+										level = '一';
+										break;
+									case '2':
+										level = '二';
+										break;
+									case '3':
+										level = '三';
+										break;
+								}
+								alertmsgDalog('您目前为' + level + '类客户，可以使用余额进行20万以内额度的出借', '再看看', '去支付')
+								$('#myModalLabel').html('客户类型提醒')
+								$('#rightbutton').click(function(argument) { //点击去支付以后就跳到topay方法
+									$rootScope.topay();
+								})
+							}
+
+						})
+						$('#rightbutton').click(function function_name(argument) { //点击银行卡支付就调到银行卡支付接口
+							$rootScope.zj_quickPay();
+						})
+						$('#myModalLabel').html('选择支付方式')
+						return false;
+					}
+					$rootScope.zj_quickPay = function() {
+						var id = getQueryString('id');
+						var amount = $('#my_money_b_text').val().trim();
+						var surplus = $rootScope.detail.surplus_invest_mone;
+						var startMoney = $rootScope.detail.start_invest_money;
+						var pamars = {
+							stockid: id,
+							operationamount: amount,
+							tokenid: getCookie('tokenid'),
+							version: app_data.version
+						}
+						$.ajax({
+							url: data_json.zjquickpay_pc,
+							type: 'post',
+							async: false,
+							data: pamars,
+							dataType: 'json',
+							success: function(data) {
+								if (data.code == '000') {
+									var parameters = {};
+									var parmars = {};
+									parmars.message = data.message;
+									parmars.signature = data.signature;
+									parmars.painText = data.painText;
+									parmars.tradeid = data.tradeid;
+
+									post_yb(data.zjrequesturl, parmars)
+									parameters = {
+										version: app_data.version,
+										tokenid: getCookie('tokenid'),
+										channel: "pc",
+										tradestatus: 3,
+										tradeid: data.tradeid
+									};
+									$.post(data_json.equipment_pc, parameters);
+								} else if (data.code == '001') {
+									alertmsg(data.msg)
+									$("#datamsgModal").on('hidden.bs.modal', function() {
+										window.location.href = 'login.html';
+									});
+								} else {
+									alertmsg(data.msg)
+								}
+							}
+						});
+						// body...
+					}
+					$rootScope.topay = function() {
+						if (!checkstatus()) {
+							return false;
+						}
+						var id = getQueryString('id');
+						var amount = $('#my_money_b_text').val().trim();
+						var surplus = $rootScope.detail.surplus_invest_mone;
+						var startMoney = $rootScope.detail.start_invest_money;
+
+						var pamars = {
+							stockid: id,
+							operationamount: amount,
+							tokenid: getCookie('tokenid'),
+							version: app_data.version
+						}
+						$.ajax({
+							url: data_json.topay,
+							type: 'post',
+							async: false,
+							data: pamars,
+							dataType: 'json',
+							success: function(data) {
+								if (data.code == '000') {
+									alertmsg('出借成功！')
+									$("#datamsgModal").on('hidden.bs.modal', function() {
+										$.ajax({
+											url: data_json.productdetail_pc,
+											type: 'post',
+											async: false,
+											data: {
+												version: app_data.version,
+												id: id
+											},
+											dataType: 'json',
+											success: function(data) {
+												if (data.code == '000') {
+													$rootScope.detail.surplus_invest_mone = data.surplus_invest_mone
+													$rootScope.$digest();
+
+												}
+											}
+										});
+										window.location.href = "lend_success.html?tradeid=" + data.tradeid;
+									});
+									parameters = {
+										version: app_data.version,
+										tokenid: getCookie('tokenid'),
+										channel: "pc",
+										tradestatus: 3,
+										tradeid: data.tradeid
+									};
+									$.post(data_json.equipment_pc, parameters);
+
+								} else if (data.code == '001') {
+									alertmsg(data.msg)
+									$("#datamsgModal").on('hidden.bs.modal', function() {
+										window.location.href = 'login.html';
+									});
+								} else {
+									alertmsg(data.msg)
+								}
+							}
+						});
+					}
+
+				});
+
+			} else {
+
+			}
+		}
+	});
+	$.ajax({
+		url: data_json.billDetail_pc,
+		type: 'post',
+		async: false,
+		data: {
+			version: app_data.version,
+			orderId: id,
+			tokenid: getCookie('tokenid'),
+			current: page
+		},
+		dataType: 'json',
+		success: function(data) {
+			app.controller('billlist', function($rootScope) {
+				if (data.code == '000') {
+
+					$rootScope.list = data.debtList;
+					$rootScope.page = page;
+					$rootScope.id = id;
+					$rootScope.protuctid = getQueryString('protuctid');
+					$rootScope.hasnextpage = data.hasnextpage;
+					if (data.hasnextpage == 'true')
+						$rootScope.nextpage = parseInt(page) + 1;
+
+					if (page == '1') {
+						$rootScope.hasprepage = 'false';
+					} else {
+						$rootScope.prepage = parseInt(page) - 1;
+
+						$rootScope.hasprepage = 'true';
+					}
+					var status = getQueryString('status');
+					$rootScope.nextpage = function() {
+						if (data.hasnextpage == 'true')
+							nextpage = parseInt(page) + 1;
+						window.location.href = 'productdetail.html?id=' + id + '&page=' + nextpage + '&protuctid=' + protuctid + '&status=' + status
+					};
+					$rootScope.firstpage = function() {
+						window.location.href = 'productdetail.html?id=' + id + '&page=1' + '&protuctid=' + protuctid + '&status=' + status
+					};
+					$rootScope.prepage = function() {
+						if (page != '1')
+							prepage = parseInt(page) - 1;
+						window.location.href = 'productdetail.html?id=' + id + '&page=' + prepage + '&protuctid=' + protuctid + '&status=' + status
+					};
+
+					if (data.debtList == '')
+						$('body').append('暂时没有数据');
+				} else {
+					$('body').append('暂时没有数据');
+				}
+			});
+		}
+	});
+</script>

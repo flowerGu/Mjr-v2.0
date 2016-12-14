@@ -1,0 +1,36 @@
+.my_account_mainright{
+	padding-bottom:85px;
+}
+
+.asset_d_tab{
+	width:780px;
+	height:212px;
+	border-top:1px dashed #c6c6c6;
+	margin:24px 22px;
+	float:left;
+}
+
+.asset_d_table{
+	width:750px;
+	height:212px;
+}
+.asset_d_table tr td{
+	font-size:20px;
+	color:#909090;
+}
+.asset_d_table .asset_d_tab_td{
+	text-indent:65px;
+	width:155px;
+	font-size:14px;
+	
+}
+.asset_d_table tr td a{
+	display:block;
+	width:74px;
+	height:23px;
+	background:#fc2956;
+	border-radius: 4px;
+	color:#fff;
+	font-size:14px;
+	line-height:23px;
+}

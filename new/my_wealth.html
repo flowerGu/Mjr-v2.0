@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="renderer" content="webkit" /> 
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+</head>
+<title>我的账户</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/head_one.css" rel="stylesheet" type="text/css" />
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/my_account.css" />
+
+
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/angular-1.0.1.min.js"></script>
+<script src="./js/angular-route.min.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/md5.js"></script>
+<body  ng-app="Mejinrong">
+    <div ng-include="'head_one.html'"></div>
+	<div ng-include="'nav.html'"></div>
+	<div ng-include="'service_nav.html'"></div>
+
+	<div class="my_account_main">
+		<div ng-include="'left_nav.html'" ng-init="myaccount='my_account_mainleft_red'" ></div>
+		<div class="my_account_mainright" >
+			<div class="my_account_mr_top" ng-controller="myCtrl" >
+				<div class="list-group" >
+			   		<div class="list-group-person">
+			   			<div style="border-radius:50px;" class="touxiang"></div>
+			   			<div class="list-group-personmsg">
+			   				<p class="list-group-tel"><span></span><span ng-bind="data.phone_number"></span><p>
+			   				<p class="list-group_personset"><a href="mysetting.html" style="color:#fff;display:block;">个人设置</a></p>
+			   			</div>	
+			   		</div>
+			   		<dl class="list-group-shou">
+		   				<dt>昨天收益</dt>
+		   				<dd><span>￥</span><font ng-bind="data.previous_earning"></font>元</dd>
+		   			</dl>
+			   		<p>
+				   		<a href="chongzhi.html" class="btn btn-info list-group-btnc" role="button">充值</a>
+				   		<a href="tixian.html" class="btn btn-warning list-group-btnc" role="button" style="margin-left:55px">提现</a>
+			   		</p>			  
+				</div>
+				<div class="list-group list-group-zc" >
+					<dl class="list-group-zcdl">
+						<dt>总资产(元)</dt>
+						<dd><font ng-bind="data.total_assets"></font></dd>
+					</dl>
+					<dl class="list-group-zcdl margboth">
+						<dt>累计收益(元)</dt>
+						<dd><font ng-bind="data.earning"></font></dd>
+					</dl>
+					<dl class="list-group-zcdl">
+						<dt>可用余额(元)</dt>
+						<dd><font ng-bind="data.balance"></font></dd>
+					</dl>
+				</div>
+			</div>
+			<div class="my_account_mr_botm"  ng-controller="invests">
+				<table width="847">
+					<thead>
+						<tr>
+							<td width="130" style="text-indent:24px">项目</td>
+							<td width="130" align="center">协议出借利率</td>
+							<td width="110" align='center'>出借金额</td>
+							<td align='center'>剩余天数</td>
+							<td align='center'>预期收益</td>
+							<td width="140">时间</td>
+							<td width="115"><a href="invests.html" class="seemore">全部项目></a></td>
+						</tr>
+					</thead>
+					<tbody class="tbody" id="investlist" ng-show="list != ''">
+						<tr style='border-bottom:1px dashed #c9c9c9' ng-repeat="x in list">
+							<td height='81' align='center'><font ng-bind="x.protuct_name"></font></td>
+							<td align='center'><font ng-bind="x.years_income"></font></td>
+							<td align='center'><font ng-bind="x.invest_money+'元'"></font></td>
+							<td align='center'><font ng-bind="x.remaining_days"></font></td>
+							<td align='center'><font ng-bind="x.expire_profit+'元'"></font></td>
+							<td  colspan='2'>预定时间：<font ng-bind="x.reserve_date"></font><br/>完成时间：<font ng-bind="x.trade_end_date"></font></td>
+						</tr>
+						 
+					</tbody>
+					
+				</table>
+				<div class="pre_next" ng-show="list != ''">
+					<a href="my_wealth.html?page={{nextpage}}"  ng-show="hasnextpage">&nbsp;&nbsp;<下一页>&nbsp;&nbsp;</a>
+					<div style="width:70px;">第 <span ng-bind="page"></span> 页&nbsp;&nbsp;</div>
+	              	<a href="my_wealth.html?page={{prepage}}" ng-show='hasprepage'>&nbsp;&nbsp;<上一页>
+	              	</a>
+	                <a href="my_wealth.html" >[首页]&nbsp;&nbsp;</a>     
+				</div>
+				<div class="my_account_tosee"  ng-show="list == ''">
+					<dl class="my_account_tosee_dl">
+						<dt><img src="images/to-see.png"/></dt>
+						<dd class="run_tosee"><a href="prducts.html">快去看看吧</a></dd>
+						<dd class="wujilu">无项目记录</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div ng-include="'./main_bottom.html'"></div>  
+	<div ng-include="'./footer.html'"></div>
+ </body>
+ <script type="text/javascript">
+ 	 var app = angular.module('Mejinrong', []);
+ 	 var page=getQueryString('page');
+ 	 if(page==null)
+ 		page=1;
+
+ 	
+	    $.ajax({
+	      url:data_json.getdetail_pc,
+	      type:'post',
+	      async:false,
+	      data:{version:app_data.version,tokenid:getCookie('tokenid')},
+	      dataType:'json',
+	      success:function(data){
+	      	 app.controller('myCtrl', function($scope) {
+			        if(data.code=='000')
+			        {	
+						$scope.data = data;
+						if(data.head_url == ""){
+							$(".touxiang").html("<img src='images/01.png'/>");
+						}
+						else{
+							$(".touxiang").html("<img src='"+data.head_url+"'/>");
+							
+						}
+			        }
+			        else
+			        {
+
+			        }
+			});
+		}
+
+	    });
+    
+    app.controller('invests', function($scope) {
+		$.ajax({
+		      url:data_json.invests_pc,
+		      type:'post',
+		      async:false,
+		      data:{version:app_data.version,tokenid:getCookie('tokenid'),current:page,type:1},
+		      dataType:'json',
+		      success:function(data){
+		        if(data.code=='000')
+		        {
+		        	if(data.list!='')
+		        	{
+					    $scope.list = data.list;
+					    $scope.page = page;
+					    $scope.hasnextpage = data.hasnextpage;
+					    if(data.hasnextpage=='true')
+					    	$scope.nextpage=parseInt(page)+1;
+					    	
+					    if(page=='1')
+					    {
+					    	$scope.hasprepage = 'false';
+					    }
+					    else
+					    {
+					    	$scope.prepage=parseInt(page)-1;
+					    	$scope.hasprepage = 'true';
+					    }
+		        	}
+		        	else
+		        	{
+		        		$scope.list = data.list;
+		        	}
+				  	
+		        }
+		      }
+		});
+	});
+</script>

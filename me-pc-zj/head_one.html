@@ -1,0 +1,61 @@
+<script type='text/javascript'>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?e923b002aba4a0bd4854fcbb95ca3880";
+	  var s = document.getElementsByTagName("script")[0];
+	  s.parentNode.insertBefore(hm, s);
+	})();
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', '170d8afb406b42b7869860a63f25c4e1']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+</script>
+<div id='header_one'>
+	<div class="content">
+		<div class="head_one_left">
+			<!--<img src="images/minlogo.gif">
+			<a href="http://www.minxinjituan.com/welcome" target="_blank"><h1>民信官网</h1></a>-->
+			<p style="margin: 0px;line-height: 30px;"><img src="images/headtel.png"> &nbsp;&nbsp;客服热线：400-044-3888转6</p>
+			<ul class="head_one_ul">
+				<li style="text-align: center;text-indent:2em"><a class="red" href="javascript:;" onclick="logout()" id="logout">退出</a></li>
+				<li><a href="http://zdcx.minxinjituan.com/minxin-bill/bills/MeIndex.jsp"  target="_blank">账单查询</a></li>
+				<li><a href="new_guide.html" target="_blank" class="new_guide">新手指引</a></li>
+				<li><a href="help_main.html" class="helpcen" target="_blank">帮助中心</a></li>
+				<li><a class="red" href="register.html" id="register">免费注册</a></li>		
+				<li><a href="login.html" id="login">立即登录</a></li>
+			</ul>
+		</div>	
+	</div>
+</div>
+<script type="text/javascript">
+	if(islogin(getCookie('tokenid')))
+	{
+		$('#login').css("visibility","hidden");
+		$('#register').css("visibility","hidden");
+	}
+	else
+	{
+		$('#logout').hide();
+	}
+	$(window).ready(function(){
+
+		if($("title").html() == "帮助中心"){	
+			$(".red").removeClass("red");
+			$(".helpcen").addClass("red");
+		}
+		if($("title").html() == "新手指引"){	
+			$(".red").removeClass("red");
+			$(".new_guide").addClass("red");
+		}
+	})
+</script>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="cleartype" content="on">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <meta name="apple-itunes-app" content="app-id=1080260971">
+    <title>Me金融--出借成功</title>
+    <meta name="application-name" content="">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="css/base.min.css">
+    <link rel="stylesheet" href="css/InvestProtocol.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/base.css" rel="stylesheet" type="text/css"/>
+    <link href="css/head_one.css" rel="stylesheet" type="text/css"/>
+    <link href="css/footer.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/my_account.css"/>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/angular-1.0.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/functions.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/lend_success.js"></script>
+
+</head>
+<body ng-app="Mejinrong">
+    <div ng-include="'head_one.html'"></div>
+    <div ng-include="'nav.html'"></div>
+    <div ng-include="'service_nav.html'"></div>
+    <div class="protocol_container protocol_mtb20">
+        <div class="protocol_container_box">
+            <div class="protocol_textBox clearfix" ng-controller="orderdetail">
+                <h5 class="protocol_backDetails lend_borderBt"><a id="J_xieyi" href="reg_xieyi.html">出借协议></a></h5>
+                <div id="J_chenggong" style="display:none;">
+                <div class="lend_welcome">恭喜您 <span ng-bind="data.phone_number"></span>，出借成功！</div>
+                <ul class="lend_stepBox">
+                    <li class="curs">
+                        <span>1</span>
+                        <div class="lines">出借成功</div>
+                    </li>
+                    <li>
+                        <span>2</span>
+                        <div class="lines">开始计息</div>
+                    </li>
+                    <li>
+                        <span>3</span>
+                        <div class="lines">到期收益</div>
+                    </li>
+                    <li class="last">
+                        <span>&nbsp;</span>
+                    </li>
+                </ul>
+                <div class="lend_tables">
+                    <table width="100%">
+                        <tr>
+                            <td>名称</td>
+                            <td ng-bind='data.projectName'></td>
+                            <td>购买金额</td>
+                            <td><span ng-bind="data.buyAmount+'元'"></span></td>
+                        </tr>
+                        <tr>
+                            <td>过往年化收益率</td>
+                            <td><span ng-bind='data.yearRate+"%"'></span></td>
+                            <td>项目期限</td>
+                            <td><span ng-bind='data.projectPeriod+"个月"'></span></td>
+                        </tr>
+                        <tr>
+                            <td>计息日</td>
+                            <td><span ng-bind='data.valueDate'></span></td>
+                            <td>预期收益</td>
+                            <td><span ng-bind='data.prospectiveEarnings+"元"'></span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="lend_tablesBnt">
+                    <a ng-href="productdetail.html?protuctid={{data.productId}}&status={{data.salesStatus}}&id={{data.projectDetailId}}" class="u_btn_tpl pink w350h44 J_contionBuy">继续购买</a>
+                    <a href="invests.html" class="u_btn_tpl pink w350h44 JorderDetial">订单详情</a>
+                </div>
+            </div>
+            <div id="J_shibai" style="text-align:center;display:none;">
+				<img src="images/chujie_error.png" alt="" style="margin:30px 0;" />
+				<p style="font-size:18px;color:#5f5f5f;">出借失败：项目已售罄，亲，下次手要快一点哦！</p>
+				<div class="lend_tablesBnt">
+					<div id="J_shouye_btn" class="u_btn_tpl pink w350h44"><a href="index.html" style="color: #fff;display: inline-block;width: 100%;">返回首页</a></div>
+					<div id="J_qitaxiangmu_btn" class="u_btn_tpl pink w350h44"><a href="prducts.html" style="color: #fff;display: inline-block;width: 100%;">出借其他项目<a/></div>
+				</div>
+			</div>
+			<div id="J_chujiezhong" style="text-align:center;display:none;">
+				<img src="images/chujie_pic.jpg" alt="" style="margin:30px 0;" />
+				<p style="font-size:18px;color:#5f5f5f;">亲，项目正在出借中，请稍后再试！</p>
+				<div class="lend_tablesBnt">
+					<div id="J_shouye_btn" class="u_btn_tpl pink w350h44"><a href="index.html" style="color: #fff;display: inline-block;width: 100%;">返回首页</a></div>
+					<div id="J_qitaxiangmu_btn" class="u_btn_tpl pink w350h44"><a href="prducts.html" style="color: #fff;display: inline-block;width: 100%;">出借其他项目<a/></div>
+				</div>
+			</div>
+        </div>
+    </div>
+    </div>
+    <div ng-include="'./main_bottom.html'"></div>
+    <div ng-include="'./footer.html'"></div>
+</body>
+</html>

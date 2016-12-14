@@ -1,0 +1,82 @@
+.help_dl{
+	width:273px;
+	height:153px;
+	border:1px solid #e1e1e1;
+	padding:27px 20px 0 25px;
+	float:left;
+	overflow: hidden;
+}
+.help_dl dt{
+	height:38px;
+	font-size:18px;
+	color:#565656;
+	font-weight: 200;
+	border-bottom:1px solid #e1e1e1;
+}
+.help_dl .help_fist{
+	margin-top:15px;
+}
+.help_dl dd{
+	height:35px;
+	font-size:16px;
+	width:240px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	line-height:35px;
+}
+.help_dl_cen{
+	margin:0 25px;
+}
+
+
+/*-----------------------------------*/
+.help_right{
+	width:750px;
+	min-height:250px;
+	float:right;
+	padding:0 28px;
+}
+.help_right h2{
+	height:63px;
+	font-size:16px;
+	color:#5d5d5d;
+	line-height:70px;
+	border-bottom:1px solid #e1e1e1;
+	font-weight: 400;
+}
+/*.help_right p{
+	color:#999999;
+	font-size:14px;
+	line-height:28px;
+	margin-top:25px;
+}*/
+
+
+.my_account_main{
+	margin-bottom:100px;
+	overflow: hidden;
+}
+
+
+
+/*---------------------*/
+.answerli{
+	border:1px solid #e1e1e1;
+	text-indent: 20px;
+	border-top:0;
+	position:relative;
+}
+.answerli span{
+	position: absolute;
+	right:20px;
+	top:15px;
+	border-right:5px solid transparent;
+	border-top:5px solid #fc2956;
+	border-left:5px solid transparent;
+}
+
+
+
+
+

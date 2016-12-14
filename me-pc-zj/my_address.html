@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="renderer" content="webkit" /> 
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+    <META HTTP-EQUIV="expires" CONTENT="0">
+</head>
+<title>我的账户-设置我的联系地址</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/head_one.css" rel="stylesheet" type="text/css" />
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/my_account.css" />
+<link rel="stylesheet" type="text/css" href="css/all_item.css"/>
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/pikaday.css"/>
+<link rel="stylesheet" href="css/person_test.css" />
+
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/angular-1.0.1.min.js"></script>
+<script src="./js/angular-route.min.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/validate.js"></script>
+<script src="js/area.js"></script>
+
+<body  ng-app>
+    <div ng-include="'head_one.html'"></div>
+    <div ng-include="'nav.html'"></div>
+    <div ng-include="'service_nav.html'"></div>
+
+	<div class="my_account_main">
+		<div ng-include="'./left_nav.html'" ng-init="settingindex='my_account_mainleft_red'" ></div>  
+
+		<div class="my_account_mainright">
+			<div class="my_account_mr pt_renzheng pt_address">
+				<h3> <a href="mysetting.html"><返回上一层></a></h3>
+				<table width="560" height="380">
+					<tr>
+						<td width="110">收件人姓名</td>
+						<td>
+							<input type="text" class="pt_rzh_text" placeholder="请输入姓名" id='name'/>
+						</td>
+					</tr>
+					<tr>
+						<td>手机号码</td>
+						<td> 
+							<input type="text" class="pt_rzh_text" placeholder="请输入手机号" id='tel'/>
+						</td>
+					</tr>
+					<tr>
+						<td>所在地区</td>
+						<td>
+							<select id="s_province" name="s_province" onchange="getProvinceCity($(this).find('option:selected').val(), 2)"></select>&nbsp;&nbsp;
+						    <select id="s_city" name="s_city" onchange="getProvinceCity($(this).find('option:selected').val(), 3)"></select>&nbsp;&nbsp;
+						    <select id="s_county" name="s_county"></select>
+						</td>
+					</tr>
+					<tr style="height:120px;margin-top:30px">
+						<td style="vertical-align: initial;">详细地址</td>
+						<td>
+							<textarea class="pt_rzh_text pt_rzh_address" placeholder="请输入收件人详细地址，单元号，门牌号" id="detail" ></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<input type="button" class="pt_renzheng_btn" value="保存" onclick="saveorupdateaddress()" />
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div ng-include="'./main_bottom.html'"></div>  
+	<div ng-include="'./footer.html'"></div>
+ </body>
+<script>
+	$("input,textarea").focus(function(){
+		$(this).css("color","#333");
+	});
+    $(function(){
+        getProvinceCity(0, 1);
+        selectaddress()
+       
+    });
+    function getProvinceCity(parentId, pcType){
+        $.ajax({
+            url : data_json.getProvinceCity,
+            type : 'get',
+            dataType : 'json',
+            async:false,
+            data : {
+                version : app_data.version,
+                tokenid : getCookie('tokenid'),
+                parentId : parentId,
+                pcType : pcType
+            },
+            success : function(data){
+                if (data.code=='000') {
+                    var htmlProvince = '<option>请选择省份</option>';
+                    var htmlCity = '<option>请选择市</option>';
+                    var htmlCountry = '<option>请选择区县</option>';
+                    $(data.list).each(function(index, element){
+                        var pcCode = element.pcCode;
+                        var pcName = element.pcName;
+                        if(pcType == 1){
+                            htmlProvince += '<option value="'+pcCode+'" option-value="'+pcName+'">'+pcName+'</option>';
+                        }else if(pcType == 2){
+                            htmlCity += '<option value="'+pcCode+'" option-value="'+pcName+'">'+pcName+'</option>';
+                        }else if(pcType == 3){
+                            htmlCountry += '<option value="'+pcCode+'" option-value="'+pcName+'">'+pcName+'</option>';
+                        }
+                    });
+                    if(pcType == 1){
+                        $('#s_province').html(htmlProvince);
+                    }else if(pcType == 2){
+                        $('#s_city').html(htmlCity);
+                        $('#s_county').html(htmlCountry);
+                    }else if(pcType == 3){
+                        $('#s_county').html(htmlCountry);
+                    }
+                 // selectaddress()
+                } else {
+
+                }
+            },
+            error : function(e) {
+//              console.log(e);
+            }
+        })
+    }
+    var id = '';
+    function saveorupdateaddress(){
+        var province = $('#s_province').find('option:selected').text();
+        var city = $('#s_city').find('option:selected').text();
+        var country = $('#s_county').find('option:selected').text();
+        var detail = $('#detail').val();
+        var name=$('#name').val().trim();
+        var tel=$('#tel').val().trim();
+        if(name=='')
+        {
+        	alertmsg('姓名不能为空');
+        	return false;
+        }
+         if(name !=='' && name.length > 15)
+        {
+        	alertmsg('姓名过长');
+        	return false;
+        }
+        if(tel=='')
+        {
+            alertmsg('电话号码不能为空！');
+            return false;
+        }
+        if(!checkSubmitMobil(tel))
+        {
+        	alertmsg('电话号码输入有误');
+        	return false;
+        }
+        if(province=='请选择省份'){
+        	alertmsg('请选择省份');
+        	return false;
+        }
+		if(city=='请选择市'){
+			alertmsg('请选择市');
+			return false;
+		}
+        if(country == "请选择区县"){
+        	alertmsg('请选择区县');
+        	return false;
+        }
+        if(detail == ""){
+        	alertmsg('请填写详细地址');
+        	return false;
+        }
+        $.ajax({
+            url : data_json.saveorupdateaddress_pc,
+            type : 'post',
+            dataType : 'json',
+            async:false,
+            data : {
+                version : app_data.version,
+                tokenid : getCookie('tokenid'),
+                recipName : name,    //用户名
+                recipTel : tel,     //手机
+                detailAddress : province + '@' + city + '@' + country + '@' + detail,//客户地址
+                addressStatus : 1  //地址状态
+            },
+            success : function(data){
+                if (data.code=='000') {
+                    id = data.id;
+                    alertmsg('保存成功！');
+                    $("#datamsgModal").on('hidden.bs.modal', function () {
+                            window.location.href='mysetting.html';
+                    });
+                } else {
+                    alertmsg('保存失败！');
+                }
+            },
+            error : function(e) {
+//              console.log(e);
+            }
+        });
+    }
+    function selectaddress(){
+        $.ajax({
+            url : data_json.selectaddress_pc,
+            type : 'get',
+            dataType : 'json',
+            async:false,
+            data : {
+                version : app_data.version,
+                tokenid : getCookie('tokenid')
+            },
+            success : function(data){
+                if (data.code=='000') {
+                	if(data.list!='')
+                	{
+                		var detailAddress=data.list[0].detailAddress;
+	                	if(detailAddress=='' || detailAddress=='null' ||detailAddress==null)
+	                		detailAddress='';
+	                	else
+	                	{
+	                		var arrAddre=data.list[0].detailAddress.split('@')
+		                	var prov=arrAddre[0];
+		                	var city=arrAddre[1];
+		                	var country=arrAddre[2];
+		                	var detailAddress=arrAddre[3];
+	                	}
+	                	setCookie('adressid',data.id)
+                         $("#s_province").find("option[option-value="+prov+"]").attr("selected",true);
+
+	                	var scity= $("#s_province").find("option[option-value="+prov+"]").val();
+                        getProvinceCity(scity,2);
+                        $("#s_city").find("option[option-value="+city+"]").attr("selected",true);
+                        var scounty= $("#s_city").find("option[option-value="+city+"]").val();
+                        getProvinceCity(scounty,3);
+                        $("#s_county").find("option[option-value="+country+"]").attr("selected",true);
+ 
+	                  	$('#detail').val(detailAddress)
+	                  	$('#name').val(data.list[0].recipName)
+	                  	$('#tel').val(data.list[0].recipTel)
+                	}
+                } else {
+
+                }
+            },
+            error : function(e) {
+//              console.log(e);
+            }
+        });
+    }
+</script>
+
+

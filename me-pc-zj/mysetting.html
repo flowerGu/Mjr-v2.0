@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="renderer" content="webkit" /> 
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+</head>
+<title>我的账户-个人设置</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/head_one.css" rel="stylesheet" type="text/css" />
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/my_account.css" />
+<link rel="stylesheet" type="text/css" href="css/all_item.css"/>
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/pikaday.css"/>
+<link rel="stylesheet" href="css/person_test.css" />
+
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/angular-1.0.1.min.js"></script>
+<script src="./js/angular-route.min.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/md5.js"></script>
+<body  ng-app="Mejinrong">
+    <div ng-include="'head_one.html'"></div>
+	<div ng-include="'nav.html'"></div>
+	<div ng-include="'service_nav.html'"></div>
+    <!--
+    	作者：offline
+    	时间：2016-05-09
+    	描述：abnner
+    -->
+	
+	<!--
+    	作者：offline
+    	时间：2016-05-09
+    	描述：main
+    -->
+	<div class="my_account_main">
+		 <div ng-include="'left_nav.html'" ng-init="settingindex='my_account_mainleft_red'" ></div>
+		<div class="my_account_mainright" ng-controller="myCtrl">
+			<div class="my_account_mr person_t_top">
+				<table width="780" height="123">
+					<tr>
+						<td width="65" align="center"><img src="images/my_act_tel.png"/></td>
+						<td width="245">绑定手机</td>
+						<td width="400"><font ng-bind="data.phone_number"></font></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td width="65" align="center"><img src="images/shiming.png"/></td>
+						<td width="245">实名认证</td>
+						<td ng-show="data.is_realname==1"><font ng-bind="data.name+'('+data.id_number+')'"></font></td>
+						<td ng-show="data.is_realname==0">未认证</td>
+						<td>
+						<a href="javascript:;" ng-show="data.is_realname==1">已认证</a>
+						<a href="pt_renzheng.html" ng-show="data.is_realname==0" class="btn btn-link">去认证</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="person_t_top person_t_cen">
+				<table width="780" height="123">
+					<tr>
+						<td width="65" align="center"><img src="images/yinhang.png"/></td>
+						<td width="245">银行卡</td>
+						<td width="400"><font ng-bind="data.bankSize"></font>张 </td>
+						<td>
+							<a href="bankinfo.html" ng-show="data.bankSize != '0'" class="btn btn-link">查看</a>
+			   				<a href="" ng-show="data.bankSize == '0'"ng-click="test()" class="btn btn-link">去绑卡</a>
+						</td>
+					</tr>
+					<tr>
+						<td width="65" align="center"><img src="images/shouquan.png"/></td>
+						<td>出借授权</td>
+						<td ng-show="data.accredit_bid_status==1"></td>
+						<td ng-show="data.accredit_bid_status==0">未授权</td>
+						<td><a href="javascript:;" ng-show="data.accredit_bid_status==1" >已授权</a><a href="javascript:;" onclick="cpcnautotransfer_pc()"  ng-show="data.accredit_bid_status==0" class="btn btn-link">去授权</a></td>
+					</tr>
+				</table>
+			</div>
+			<div class="person_t_top person_t_cen">
+				<table width="780" height="120">
+					<tr style="border:none">
+						<td width="65" align="center"><img src="images/email.png"/></td>
+						<td width="245">电子邮箱</td>
+						<td width="400"  ng-show="data.cus_email !='' "><font ng-bind="data.cus_email | emailxx"></font></td>
+						<td width="400"  ng-show="data.cus_email =='' ">未设置</td>
+						<td><a href="email.html">设置</a> </td>
+					</tr>
+					<!--<tr>
+						<td width="65" align="center"><img src="images/adress.png"/></td>
+						<td>我的联系地址</td>
+						<td ng-show="data.cus_address !='' "><font ng-bind="data.cus_address | split"></font></td>
+						<td ng-show="data.cus_address =='' ">未设置 </td>
+						<td><a href="my_address.html" >设置</a></td>
+					</tr>-->
+				</table>
+			</div>
+			<div class="person_t_top person_t_cen">
+				<table width="780" height="123">
+					<tr>
+						<td width="65" align="center"><img src="images/zhucetime.png"/></td>
+						<td width="245">注册时间</td>
+						<td width="400"><font ng-bind="data.register_time"></font></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td width="65" align="center"><img src="images/loginpas.png"/></td>
+						<td>登录密码</td>
+						<td></td>
+						<td><a href="password.html">修改</a></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div ng-include="'./main_bottom.html'"></div>  
+	<div ng-include="'./footer.html'"></div>
+ </body>
+ <script type="text/javascript" src="./js/my_account01.js" ></script>
+<script type="text/javascript">
+ 	 var app = angular.module('Mejinrong', []);
+    $.ajax({
+      url:data_json.safeauth_pc,
+      type:'post',
+      async:false,
+      data:{version:app_data.version,tokenid:getCookie('tokenid')},
+      dataType:'json',
+      success:function(data){
+        if(data.code=='000')
+        {
+        	setCookie('cus_email',data.cus_email)
+    		app.controller('myCtrl', function($scope) {
+			    $scope.data = data;
+			    $scope.test=function(){
+			    	if($scope.data.is_realname==0){
+			    		alertmsg('您还未实名认证');
+			    		return false;
+			    	}
+			    	window.location.href="bankinfo.html";
+			    	return true;
+			    }
+			});
+			app.filter("split",function(){
+	            return function(input){
+	            	if(input=='' || input==null || input=='null')
+	            		return '';
+	            	var inputArr=input.split("@");
+	                return inputArr[0]+" "+inputArr[1];
+	            }
+            });
+            app.filter("substr",function(){
+                return function(input,start,end){
+                	if(end>input.length)
+                	{
+                		end=input.length;
+                	}
+                    input = input.substr(start,end);
+                    return input;
+                }
+            });
+             app.filter("emailxx",function(){
+                return function(input){
+                    var b=input.split('@')[1];
+                    var a=input.split('@')[0].substr(0,1);
+                    input=a+'**@'+b;
+                    return input;
+                }
+            });
+            
+       
+
+        }else
+        {
+
+        }
+      }
+    });
+
+</script>

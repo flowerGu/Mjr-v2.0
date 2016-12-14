@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="renderer" content="webkit" /> 
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+</head>
+<title>我的账户-银行卡信息</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/head_one.css" rel="stylesheet" type="text/css" />
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/my_account.css" />
+<link rel="stylesheet" href="css/banklist.css" />
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/angular-1.0.1.min.js"></script>
+<script src="./js/angular-route.min.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/md5.js"></script>
+<body  ng-app="Mejinrong">
+    <div ng-include="'head_one.html'"></div>
+    <div ng-include="'nav.html'"></div>
+    <div ng-include="'service_nav.html'"></div>
+
+    <div class="my_account_main">
+        <div ng-include="'left_nav.html'" ng-init="bankinfo='my_account_mainleft_red'" ></div>
+        <div class="my_account_mainright" >
+            <div class="bank_list" ng-controller="bank_list" >
+                <ul>
+                    <li  ng-repeat="x in banklist">
+                        <div class="bankdetail">
+                            <p><img ng-src="./images/bank_img/{{x.bank_code}}.png"></p>
+                            <p>储蓄卡</p>
+                            <p ng-bind="x.bank_num"></p>
+                        </div>
+                    </li>
+                    <li onclick="cpcnbindbank_pc()">
+                        <div class="addcard">
+                        <p><img src="./images/addcard.png"></p>
+                        <p>添加银行卡</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div ng-include="'./main_bottom.html'"></div>  
+    <div ng-include="'./footer.html'"></div>
+    <script>
+    var app = angular.module('Mejinrong', []);
+    app.controller('bank_list', function($scope) {
+        $.ajax({
+            url : data_json.safeauth_pc,
+            type : 'post',
+            async:false,
+            dataType : 'json',
+            data : {
+                version : app_data.version,
+                tokenid : getCookie('tokenid')
+            },
+            success : function(data){
+                if (data.code=='000') {
+                    $scope.banklist = data.bankList;
+                } else {
+                    alertmsg('网络超时!');
+                }
+            },
+            error : function(e) {
+            }
+        })
+     });
+      function cpcnbindbank_pc() {
+            $.ajax({
+              url:data_json.cpcnbindbank_pc,
+              type:'post',
+              async:false,
+              data:{version:app_data.version,tokenid:getCookie('tokenid')},
+              dataType:'json',
+              success:function(data){
+                if(data.code=='000')
+                {
+                   post_yb(data.url,{message :data.message,signature:data.signature})
+                }else
+                {
+                  alertmsg(data.msg)
+                }
+              }
+            });
+          }
+</script>
+ </body>
+ 

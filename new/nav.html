@@ -1,0 +1,39 @@
+<nav>
+	<div>
+		<a href="index.html">
+			<img src="images/logo.png" style="width:75px"/>
+			<img class="pic_margleft" src="images/minslogen.png"/>
+		</a>
+	</div>
+	<ul>
+		<li><a href="index.html">首页</a></li>
+		<li><a href="prducts.html">我要出借</a></li>
+		<li><a href="aboutAPP.html" target="_blank">移动客户端</a></li>
+		<li><a href="safety.html" target="_blank">安全保障</a></li>
+		<li><a href="about.html" target="_blank">关于我们</a></li>
+		<li class="marginr0"><a href="javascript:;" onclick="myaccount()">我的账户</a></li>
+	</ul>
+</nav>
+<script>
+	function myaccount() {
+		if(islogin(getCookie('tokenid')))
+		{
+			window.location.href='my_wealth.html'
+		}
+		else
+		{
+			alertmsg('您还未登录',true,'login.html')
+			 $("#datamsgModal").on('shown.bs.modal', function () {
+			 	$(".btn-danger").text("去登录");
+			 });
+		}
+	}
+	
+$('nav ul').find('li').click(function(){
+	var index=$(this).index();
+	localStorage.setItem('nav-index',index);
+})
+$('nav ul').find('li').eq(0).addClass('border_btm3').siblings().removeClass('border_btm3');
+var nav_index=localStorage.getItem('nav-index');
+$('nav ul').find('li').eq(nav_index).addClass('border_btm3').siblings().removeClass("border_btm3")
+</script>

@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html  ng-app>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    	<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<title>在线充值</title>
+	<meta name="keywords" content="Me金融,Me金融官网,Me金融投资">
+    <meta name="description" content="Me金融是一家专业的互联网金融投资服务平台，为民信公司旗下知名品牌。平台为广大用户提供便捷、稳定服务；平台采用小额分散机制，严格的风控体系，资金三方托管，竭诚为客户的投资提供服务。">
+   		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+		<link href="css/base.css" rel="stylesheet" type="text/css" />
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+    	<link href="css/showLoginPage/styles.css" type="text/css" rel="stylesheet"/>
+      <script src="js/jquery-1.9.0.min.js"></script>
+      <script src="js/functions.js"></script>
+      <script src="js/config.js"></script>
+      <script src="js/mustache.js"></script>
+      <script src="js/angular-1.0.1.min.js"></script>
+      
+    	<script type="text/javascript">
+       
+      	
+          $.get('./tpl/show_login.tpl',{"time":new Date().getTime()}, function(template){
+            var tokenid=getCookie('tokenid');
+              if(tokenid==null || tokenid=='' || tokenid == 'undefined') 
+              {
+                     var r=confirm("您还没有登录")
+              if (r==true)
+                {
+                window.location.href='first_login.html';
+                }
+              else
+                {
+               window.location.href='first_login.html';
+                }
+              }
+
+               $.ajax({
+                   type: "post",
+                   url: PCGETCUSTOMERINFO_JSON_URL,
+                   data:{tokenid:getCookie('tokenid')},
+                   success: function(data,textStatus,xhr){
+                      if(data.code=='000')
+                      {
+                          var user_detail = data; 
+                          user_detail.user_name=data.user_name
+                        $(user_detail.bankList).each(function(idx, item) {  
+                             item.bank_num="**** **** **** "+item.bank_num.substr(-4);
+                        });
+                        var result = Mustache.render(template, user_detail);     
+                         setCookie("balance", data.balance);         
+                         setCookie("user_name", data.user_name);         
+                        $('#rechage_index1').append(result);
+
+                        $('#exit').click(function(){
+                          shuaxin();
+                        })
+                      }
+                   },
+                   error:function(data){
+                      // alert('网络超时')
+                   }
+             });
+              
+          });
+
+    	</script>
+	</head>
+	<body>
+		<div ng-include="'./tpl/header.html'"></div>
+		<div id='rechage_index1' style="background: none;">
+			
+			
+		</div>
+		<div ng-include="'./tpl/footer.html'"></div>
+	</body>
+</html>

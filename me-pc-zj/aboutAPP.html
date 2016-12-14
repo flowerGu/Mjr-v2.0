@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html ng-app>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="renderer" content="webkit" /> 
+	    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	    <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+		<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+		<META HTTP-EQUIV="expires" CONTENT="0">
+		<title>APP下载-手机端随时随地自由操作【Me金融】</title>
+		<meta name="keywords" content="Me金融,民信Me金融,Me金融理财,互联网金融,投资理财,P2P理财">
+		<meta name="description" content="Me金融-民信公司旗下独立品牌，专业的个性化互联网金融服务平台">
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="css/base.css" rel="stylesheet" type="text/css" />
+        <link href="css/head_one.css" rel="stylesheet" type="text/css" />
+        <link href="css/footer.css" rel="stylesheet" type="text/css" />
+		<link href="css/download_style.css" rel="stylesheet" type="text/css" />
+		<script src="./js/jquery.min.js"></script>
+        <script src="js/angular-1.0.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/config.js"></script>
+        <script src="js/functions.js"></script>
+		<!--以下文件是新增的-->
+		<script src="js/aboutAppEasings.js"></script>
+		<script src="js/aboutAppFullpage.js"></script>
+		<script src="js/aboutAppVelocity.js"></script>
+		<script src="js/aboutApp.js"></script>
+		<link rel="stylesheet" href="css/aboutAppFullPage.css">
+		<link rel="stylesheet" href="css/aboutApp.css">
+		 <style>
+			#box
+			{
+				transition: all 1000ms cubic-bezier(0.86, 0, 0.07, 1);
+				-webkit-transition: all 1000ms cubic-bezier(0.86, 0, 0.07, 1);
+			}
+			#box.bottom
+			{
+				transform: translate3d(0px, -290px, 0px);
+				-webkit-transform: translate3d(0px, -290px, 0px);
+			}
+			header{
+				background:#fff;
+			}
+		 </style>
+	</head>
+	<body>
+		<header>
+			<div style="height:7px;"></div>
+			<div ng-include="'head_one.html'"></div>
+			<div ng-include="'right_nav.html'"></div>
+			<div ng-include="'nav.html'"></div>
+		</header>
+		<div id="box">
+			<!-- 全屏滚动 -->
+			<div id="fullpage">
+				<!-- 第一屏 -->
+				<div class="section sectionOneBg">
+					<div class="one_sect">
+						<div class="aboutAppWrap clearfix">
+							<div class="phoneBox">
+								<img src="images/aboutApp/onePhone.png" alt="Me金融安卓Android_ios_Me金融APP下载_Me金融">
+							</div>
+							<div class="txtBox">
+								<div class="txt_name">Me金融APP</div>	
+								<div class="txt_describe">您的贴身资产管家</div>
+								<div class="clearfix">
+									<div class="QR_Code">
+										<img src="images/aboutApp/fuwuhao_pic.jpg" alt="微信服务号">
+										<p>扫一扫加关注</p>
+									</div>
+									<div class="bnt_box">
+										<a href="" target="_blank" id="J_IosDownloadUrl"><img src="images/aboutApp/iosbnt.png" alt="ios下载"></a>
+										<a href="" target="_blank" id="J_AndroidDownloadUrl"><img src="images/aboutApp/andrbnt.png" alt="安卓下载" class="mrt15"></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--第二屏-->
+				<div class="section sectionBg">
+					<div class="two_sect">
+						<div class="aboutAppWrap clearfix">
+							<div class="left">
+								<div class="phone2Box" id="J_phone2">
+									<img src="images/aboutApp/phone2.png" alt="APP便捷_Me金融APP下载_Me金融">
+								</div>
+							</div>
+							<div class="right" id="J_twoTxt">
+								<div class="text">
+									<h3>便捷</h3>
+									<p>登录—选择—出借，增收轻而易举</p>
+								</div>
+								<div class="downBox clearfix">
+									<div class="imgbox imgboxF"><img src="images/aboutApp/iphone.png"></div>
+									<div class="imgbox"><img src="images/aboutApp/anzhuo.png"></div>
+								</div>
+							</div>
+						</div>	
+					</div>
+				</div>
+				<!--第三屏-->
+				<div class="section sectionBg">
+					<div class="three_sect">
+						<div class="aboutAppWrap clearfix">
+							<div class="textbox" id="J_threeTxt">
+								<div class="text">
+									<h3>清晰</h3>
+									<p>资产、利率、特权，收入了如指掌</p>
+								</div>
+								<div class="downBox clearfix">
+									<div class="imgbox"><img src="images/aboutApp/iphone.png"></div>
+									<div class="imgbox imgboxF"><img src="images/aboutApp/anzhuo.png"></div>
+								</div>
+							</div>
+							<div class="imagesbox">
+								<div class="phone2Box" id="J_phone3">
+									<img src="images/aboutApp/phone3.png" alt="APP界面清晰_Me金融APP下载_Me金融">
+								</div>
+							</div>
+						</div>	
+					</div>
+				</div>
+				<!--第四屏-->
+				<div class="section sectionBg">
+					<div class="four_sect">
+						<div class="aboutAppWrap clearfix">
+							<div class="left">
+								<div class="phone2Box" id="J_phone4">
+									<img src="images/aboutApp/phone4.png" alt="存管安全_Me金融APP下载_Me金融">
+								</div>
+							</div>
+							<div class="right" id="J_fourTxt">
+								<div class="text">
+									<h3>安全</h3>
+									<p>严审，详核，存管，项目万无一失</p>
+								</div>
+								<div class="downBox clearfix">
+									<div class="imgbox imgboxF"><img src="images/aboutApp/iphone.png"></div>
+									<div class="imgbox"><img src="images/aboutApp/anzhuo.png"></div>
+								</div>
+							</div>
+						</div>	
+					</div>
+				</div>
+				<!--第五屏-->
+				<div class="section section-footer fp-auto-height">
+					<div ng-include="'./main_bottom.html'"></div>  
+					<div ng-include="'./footer.html'"></div>
+				</div>
+			</div>
+	    </div>
+		
+	</body>
+</html>

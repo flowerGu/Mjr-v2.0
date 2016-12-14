@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="renderer" content="webkit" /> 
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+</head>
+<title>忘记密码</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/login.css" rel="stylesheet" type="text/css" />
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<script src="./js/jquery.min.js"></script>
+<script src="js/angular-1.0.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/md5.js"></script>
+<script src="./js/validate.js"></script>
+<script type="text/javascript">
+	function keyDown(e){ 
+			 var keycode = 0;
+			 //IE浏览器
+			 if(CheckBrowserIsIE()){
+			    keycode = e.keyCode;
+			 }else{ //火狐浏览器
+			    keycode = e.which;
+			 }
+			 if (keycode == 13 ) //回车键是13
+			 {
+ 				login()
+			 }
+	}
+	function CheckBrowserIsIE(){
+			 var result = false;
+			 var browser = navigator.appName;
+			 if(browser == "Microsoft Internet Explorer"){
+			  result = true;
+			 }
+			 return result;
+		}
+	function login() {
+		var name=$('#name').val().trim();
+		var pass=$('#pass').val().trim();
+		if(name=='' || pass=='' )
+		{
+			alertmsg('用户名或密码不能为空！');
+			return false;
+		}
+		if(checkSubmitMobil(name)==false)
+		{
+			alertmsg('手机号格式不正确！');
+			return false;
+		}
+		if(checkSubmitPass(pass)==false)
+		{
+			alertmsg('密码格式不正确！');
+			return false;
+		}
+		pass=hex_md5(pass);
+		$.ajax({
+			url:data_json.login_pc,
+			type:'post',
+			async:false,
+			data:{version:app_data.version,logintel:name,password:pass,chanel:'pc'},
+			dataType:'json',
+			success:function(data){
+				if(data.code=='000')
+				{
+					alertmsg(data.msg);
+					setCookie('tokenid',data.tokenid)
+					$("#datamsgModal").on('hidden.bs.modal', function () {
+					        window.location.href='my_wealth.html';
+					});
+				}else
+				{
+					alertmsg(data.msg);
+				}
+			}
+		});
+	}
+
+	function verifyPhone(){
+        var phone = $('#phone').val();
+        if(phone == ''){
+            alertmsg('请输入手机号码！');
+            return;
+        }
+        var phoneReg = /^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+		if(!phoneReg.test(phone)){
+			alertmsg('请输入正确的手机号码！');
+			return;
+		}
+        $.ajax({
+            url : data_json.forgetpasswordlogintel_pc,
+            type : 'post',
+            dataType : 'json',
+            data : {
+                version : app_data.version,
+                logintel : phone
+            },
+            success : function(data){
+                if (data.code=='000') {
+                    alertmsg('验证成功！');
+                    setCookie('forget_tel',phone)
+                    setCookie('isrealname',data.isrealname)
+                    window.location.href='psd_yanzheng.html'
+                } else {
+                    alertmsg('验证失败！');
+                }
+            },
+            error : function(e) {
+            }
+        })
+    }
+</script>
+<body  onkeydown="keyDown(event);" ng-app> 
+
+	<div ng-include="'./header.html'"></div>  
+	<div id='main'>
+
+		<div class="content" style="height: 383px">
+			<div class="login forget_psd">
+				<table height="140" width="280" style="margin:0 auto">
+					<tr>
+						<td class="forget_psd_td">输入注册时的手机号</td>
+					</tr>
+					<tr>
+						<td><input id="phone" type="text" class="forget_psd_tel" placeholder="请输入手机号" maxlength="11" /></td>
+					</tr>
+					<tr>
+						<td><a onclick="verifyPhone()" class="forget_psd_next">下一步</a></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="erweima">
+		<dl>
+			<dt><img src="images/iPhone.png"/></dt>
+			<dd style="font-size:12px;">iPhone下载</dd>
+		</dl>
+		<dl>
+			<dt><img src="images/Andrio.png"/></dt>
+			<dd style="font-size:12px;">安卓下载</dd>
+		</dl>
+		<dl>
+			<dt><img src="images/wx_gong.png"/></dt>
+			<dd style="font-size:12px;">微信公众号</dd>
+		</dl>
+	</div>
+<!-- 模态框（Modal） -->
+
+	<div ng-include="'./footer.html'"></div>  
+</body>

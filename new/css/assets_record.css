@@ -1,0 +1,75 @@
+.my_account_mr{
+	padding:30px 22px;
+	margin-bottom:120px;
+}
+.asset_rd_p{
+	height:62px;
+	font-size:14px;
+	color:#6a6a6a;
+}
+.asset_rd_p span{
+	font-size:18px;
+	color:#6a6a6a;	
+	float:left;
+}
+.asset_rd_p b{
+	font-size:14px;
+	color:#6a6a6a;	
+	font-weight: 300;
+	float:left;
+}
+
+/*----复选框---------------------------*/
+.checkbox{
+	width:16px;
+	height:14px;
+	border:1px solid #e0dcdc;
+	margin:0 6px 0 40px;
+	overflow: hidden;
+	float:left;
+	padding-left:0;
+	color:#fc2956;
+	cursor: hand;
+	cursor: pointer;
+}
+
+/*----搜索---------------------------*/
+.asset_rd_p .my_account_sub{
+	background:#fc2956;
+	width:62px;
+	height:24px;
+	border:0;
+	color:#fff;
+	margin-left:20px;
+	margin-top:-10px;
+	border-radius:3px;	
+}
+
+.asset_rd_table{
+	font-size:14px;
+	color:#6a6a6a;
+}
+.asset_rd_table tr{
+	border-bottom:1px solid #dadada;
+	height:60px;
+}
+
+.asset_rd_none{
+	height:318px;
+	overflow:hidden;
+}
+
+.wujilu{
+	width:250px;
+	font-size:16px;
+	margin-left:-65px;
+}
+
+.asset_rd_zong{
+	color:#5e5e5e;
+	text-align: right;
+	line-height:65px;
+	font-size:14px;
+}
+
+

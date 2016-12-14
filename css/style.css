@@ -1,0 +1,120 @@
+.down_header{width:100%;margin:0 auto;padding:20px 0 5px;background-color:#fafafa;}
+.down_wrap h1{float:left;}
+.nav ul{float:right;margin-top:40px}
+.nav ul li{float:left;font-size:18px;padding:5px;color:#898989}
+.nav ul li a{display:block;color:#6f6f6f}
+.down_banner{position:relative;width:100%;height:478px;background-size: 100% 100%;}
+.banner_con{position:relative;width:1280px;height:478px;margin:0 auto;}
+.down_banner img.bg_down{display:block;height:478px;}
+.topWx{position:absolute;right:-56px;bottom:20px;z-index:224;}
+.topiphone{position:absolute;right:260px;bottom:20px;z-index:220}
+.top{position:absolute;right:100px;bottom:20px;z-index:223}
+.yellow{width:127px;padding-bottom:8px;text-align:center;font-size:18px;color:#fff556}
+.top_down{position:absolute;right:270px;bottom:30px;z-index:222;color:#fff;font-size:19px;text-shadow: 0 2px 2px #2C2C2C;}
+.top_downip{position:absolute;right:435px;bottom:30px;z-index:222;color:#fff;font-size:19px;text-shadow: 0 2px 2px #2C2C2C;}
+.top_wx{position:absolute;right:145px;bottom:30px;z-index:222;color:#fff;font-size:19px;text-shadow: 0 2px 2px #2C2C2C;}
+.common_h{width:100%;margin:0 auto;padding:30px 0;border-bottom:1px solid #ececec;box-shadow:0 0 7px #ececec inset;}
+.bg_f{background-color:#fafafa}
+.bg_w{background-color:#fff}
+.common_h img{display:block;margin:5px auto;}
+.app_code img{width:100%;}
+.footer1{margin:0 auto;padding:30px 0;background-color:#3f3a39;}
+.footer2{margin:0 auto;padding:20px 0;background-color:#2c2c2c;color:#838383;font-size:14px}
+.fl{float:left;}
+.fr{float:right}
+.mgtl{margin-left:20px;margin-top:20px;font-size:14px;color:#ececec;}
+.mgtl p{margin-bottom:5px}
+.tel_p{color:#ffca08;font-size:34px;}
+.mgtl i{font-size:24px}
+.mgtl img{vertical-align: middle;margin-right:10px;}
+.footer_text{font-size:14px;color:#ececec;margin-bottom:15px}
+.contact_text li{float:left;margin-right:45px;margin-top:20px}
+.footer2 li{float:left;margin-right:10px;margin-bottom:5px}
+.footer2 a{color:#838383;}
+.footer2 p{clear:left;}
+
+.rechage_con{position:relative;width:1280px;height:478px;margin:0 auto;}
+.rechage_index{position:relative;width:100%;height:478px;}
+/*银行卡*/
+.bank_list{
+	width: 1000px;
+	height: 500px;
+	margin: 0 auto;
+}
+.wrap{ float: left;z-index: 10;text-align: center;margin-left: 80px;margin-top: 30px;}
+.bank_msg{border: 1px solid #000;width: 380px;height: 190px; text-align: center;}
+.bank_img{margin-top: 45px;}
+.bank_img img{height: 50px;margin: 0 auto;word-wrap: break-word;}
+.bank_detial{margin-top: 33px;}
+.bank_code{}
+.bank_type{background-color: rgb(204,204,204);width: 60px;height: 28px;border-radius: 8px;padding: 5px;
+	border: 1px solid rgb(116,116,116);margin-left: 20px;}
+.card_radio{margin-top: 12px;}
+
+
+.myaccount{
+      width: 850px;height: 150px;border: 1px #000 solid;margin: 0 auto;
+    }
+    .myaccount li{
+      float: left;width: 200px;
+       margin-top: 30px;
+    }
+    .myaccount li p{
+      padding-top: 20px;
+      font-size: 16px;
+    }
+    .myaccount li a{
+      margin-top: 40px;
+      font-size: 20px;
+      color:rgb(101,101,101);
+
+    }
+    .myaccount li img{
+      padding-left: 50px;
+    }
+
+    .myaccount li:nth-of-type(3){
+        margin-top: 60px;
+       float: left;
+       margin-left: 246px;
+
+    }
+    .chongdiv{
+      width: 850px;height: 150px;border: 1px #000 solid;margin: 0 auto;
+      border-top:none; 
+      margin-bottom: 20px;
+    }
+    .chongdiv li{
+      float: left;width: 265px;
+       margin-top: 60px;
+    }
+     .chongdiv li:nth-of-type(1){
+        padding-left: 50px;
+    }
+    .chongdiv li:nth-of-type(2){
+    }
+    .chongdiv li:nth-of-type(3){
+
+    }
+    .chongdiv .cz{
+        color:#000;
+        font-size: 16px;
+    }
+    .chongdiv .de{
+       color:rgb(101,101,101);
+        font-size: 16px;
+    }
+    .chongdiv li span{
+      color:#E91F50;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .chongdiv li a{
+      width: 60px;
+      height: 20px;
+      background: #E91F50;
+      border-radius: 8px;
+      color:#fff;
+      padding: 5px 8px 5px 8px;
+       margin-left: 70px;
+    }

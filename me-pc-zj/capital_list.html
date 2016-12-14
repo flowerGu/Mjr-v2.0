@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="renderer" content="webkit" /> 
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+</head>
+<title>我的账户-资产记录</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/head_one.css" rel="stylesheet" type="text/css" />
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/my_account.css" />
+<link rel="stylesheet" type="text/css" href="css/all_item.css"/>
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/pikaday.css"/>
+<link rel="stylesheet" href="css/assets_record.css" />
+
+
+<script type="text/javascript" src="js/pikaday.min.js"></script>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/angular-1.0.1.min.js"></script>
+<script src="./js/angular-route.min.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/md5.js"></script>
+<script type="text/javascript" src="js/validate.js" ></script>
+
+<body  ng-app="Mejinrong">
+    <div ng-include="'head_one.html'"></div>
+  <div ng-include="'nav.html'"></div>
+  <div ng-include="'service_nav.html'"></div>
+
+  <div class="my_account_main">
+    <div ng-include="'./left_nav.html'" ng-init="captList='my_account_mainleft_red'" ></div>  
+    <div class="my_account_mainright">
+      <div class="my_account_mr" ng-controller="myCtrl" >
+        <form>
+          <p class="asset_rd_p" id="cheackboxs">
+            <span> &nbsp;选择类型</span>
+            <i option-type='1' id='checkbox1' class="checkbox"></i><b >交易</b>
+            <i option-type='2' id='checkbox2' class="checkbox"></i><b >充值</b>
+            <i option-type='3' id='checkbox3' class="checkbox"></i><b >提现</b>
+            <i option-type='4' id='checkbox4' class="checkbox"></i><b >手续费</b>
+            <i option-type='5' id='checkbox5' class="checkbox"></i><b >本金收益</b>
+            <i option-type='6' id='checkbox6' class="checkbox"></i><b >回款</b>
+          </p>
+          <p class="asset_rd_p">
+            <span> &nbsp;创建时间</span>
+            <input type="text" id="start_date" class="my_account_date" />至
+            <input type="text" id="end_date" class="my_account_date" />
+            <input type="button" class="my_account_sub" value="搜索" onclick="searchetime()" />
+          </p>
+        </form>
+        <table width="790" class="asset_rd_table">
+          <thead>
+            <tr>
+              <td width="180"> &nbsp;创建时间</td>
+              <td width="110">类型</td>
+              <td width="145" style="text-indent: 20px;">收入(元)</td>
+              <td width="145" style="text-indent: 20px;">支出(元)</td>
+              <td align="center" width="200" >备注</td>
+            </tr>
+          </thead>
+          <tbody >
+            <tr ng-repeat="x in list">
+              <td ng-bind="x.create_date"></td>
+              <td ng-bind="x.option_type | option_type"></td>
+              <td style="text-indent: 20px;"><span ng-show="!isEven(x.option_type)" ng-bind="x.operation_amount"></span></td>
+              <td style="text-indent: 20px;"><span ng-show="isEven(x.option_type)" ng-bind="x.operation_amount"></span></td>
+              <td align="center"><span ng-bind="x.remark"></span>
+              <span  ng-show="x.status =='1' ">成功</span>
+              <span  ng-show="x.status !='1' ">失败</span></td>
+            </tr>
+            
+            <!--
+                          作者：offline
+                          时间：2016-05-10
+                          描述：最后一行总记录
+                        -->
+
+            <tr ng-show="list != ''">
+              <td colspan="3"> <div >&nbsp;共<span><font ng-bind="data.records_num"></font></span>条记录，总计收入<span><font ng-bind="data.income_total"></font></span>元，总计支出<span><font ng-bind="data.spending_total"></font></span>元</td> 
+              <td colspan="2" align="right" style="padding-right: 15px;">
+              	<a href="capital_list.html" >[首页]&nbsp;&nbsp;</a>
+              	<a href="{{prepage}}" ng-show='hasprepage'>&nbsp;&nbsp;<上一页>&nbsp;&nbsp;
+              	</a>
+                <span>第<font ng-bind="page"></font>页</span>
+                <a href="{{nextpage}}"  ng-show="hasnextpage">&nbsp;&nbsp;<下一页>&nbsp;&nbsp;</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="asset_rd_none" ng-show="list == ''">
+          <dl class="my_account_tosee_dl">
+            <dt><img src="images/to-see.png"/></dt>
+            <dd class="run_tosee"><a href="chongzhi.html">立刻充值</a></dd>
+            <dd class="wujilu">轻声说抱歉：您暂时无资金记录</dd>
+          </dl>
+          <p class="asset_rd_zong" ng-show="list != ''">共<span>{{}}</span>条记录，总计收入<span>{{}}</span>，总计支出<span>{{}}</span>元</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-include="'./main_bottom.html'"></div>  
+  <div ng-include="'./footer.html'"></div>
+
+<script type="text/javascript" src="js/all_item.js" ></script>
+<script type="text/javascript">
+  
+ var app = angular.module('Mejinrong', []);
+  var page=getQueryString('page');
+  var option_type=getQueryString('option_type');
+  var start_date=getQueryString('start_date');
+  var end_date=getQueryString('end_date');
+
+  var where="capital_list.html?index=true";
+  if(page==null)
+    page=1;
+ 
+  var parmars={};
+  parmars={version:app_data.version,tokenid:getCookie('tokenid'),current:page}
+   if(option_type!=null&&option_type!='')
+   {
+      var oppArr=option_type.split(',')
+      $(oppArr).each(function(key,value){
+           var checked="#checkbox"+value;
+           $(checked).text('√');
+           $(checked).attr('ischeacked',true)
+      });
+     
+      parmars.option_type=option_type;
+      where+="&option_type="+option_type;
+   }
+    
+   if(start_date!=null)
+   {
+     parmars.start_date=start_date;
+      where+="&start_date="+start_date;
+       $('#start_date').val(start_date)
+   }
+   
+   if(end_date!=null)
+   {
+     parmars.end_date=end_date;
+      where+="&end_date="+end_date;
+       $('#end_date').val(end_date)
+   } 
+
+
+
+app.controller('myCtrl', function($scope) {
+    $.ajax({
+      url:data_json.capitalrecords_pc,
+      type:'post',
+      async:false,
+      data:parmars,
+      dataType:'json',
+      success:function(data){
+        if(data.code=='000')
+        {
+            $scope.list = data.list;
+            $scope.data = data;
+             $scope.isEven = function(value) {
+              if (value == 1 || value == 3 || value == 4)
+                return true;
+              else 
+                return false;
+            };
+             $scope.page = page;
+              $scope.hasnextpage = data.hasnextpage;
+             
+              if(data.hasnextpage=='true')
+              {
+                   if(page!=null)
+                    {
+                      nextpage=where+"&page="+(parseInt(page)+1);
+                    }
+                    $scope.nextpage=nextpage;
+              }
+                
+              if(page=='1')
+              {
+                $scope.hasprepage = 'false';
+              }
+              else
+              {
+                if(page!=null)
+                {
+                  prepage=where+"&page="+(parseInt(page)-1);
+                }
+                $scope.prepage=prepage;
+                $scope.hasprepage = 'true';
+              }
+         
+        }else
+        {
+            $scope.list = data.list;
+        }
+      }
+    });
+  
+ });
+ app.filter("option_type",function(){
+    return function(input){
+        switch(input)
+          {
+          case "1":
+            out='交易';
+            break;
+          case "2":
+            out='充值';
+            break;
+          case "3":
+            out='提现';
+            break;
+          case "4":
+            out='手续费';
+            break;
+          case "5":
+            out='特权本金收益';
+            break;
+          case "6":
+            out='回款';
+            break;
+          default:
+            out='未知';
+          }
+          return out;
+    }
+});
+</script>
+ </body>

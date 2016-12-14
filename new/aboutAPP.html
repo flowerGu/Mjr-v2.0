@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html ng-app>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="renderer" content="webkit" /> 
+	    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	    
+	    <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+		<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+		<META HTTP-EQUIV="expires" CONTENT="0">
+
+		<title>移动客户端</title>
+		<meta name="keywords" content="Me金融,Me金融官网,Me金融投资">
+		<meta name="description" content="Me金融是一家专业的互联网金融投资服务平台，为民信公司旗下知名品牌。平台为广大用户提供便捷、稳定服务；平台采用小额分散机制，严格的风控体系，资金三方托管，竭诚为客户的投资提供服务。">
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="css/base.css" rel="stylesheet" type="text/css" />
+        <link href="css/head_one.css" rel="stylesheet" type="text/css" />
+        <link href="css/footer.css" rel="stylesheet" type="text/css" />
+		<link href="css/download_style.css" rel="stylesheet" type="text/css" />
+		<script src="./js/jquery.min.js"></script>
+        <script src="js/angular-1.0.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/config.js"></script>
+        <script src="js/functions.js"></script>
+		<!--<script>
+		$(function(){
+			if(islogin(getCookie('tokenid')))
+			{
+				$('#login').css("visibility","hidden");
+				$('#register').css("visibility","hidden");
+			}
+			else
+			{
+				$('#logout').hide();
+			}
+		})
+			
+		</script>-->
+	</head>
+	<body>
+		<div style="height:7px;"></div>
+		<div ng-include="'head_one.html'"></div>
+		<div ng-include="'right_nav.html'"></div>
+        <div ng-include="'nav.html'"></div>
+		<div class="down_banner" >
+			<div class="banner_con">
+				<img class="bg_down"src="images/banner_03.png" />
+				<div class="topiphone">
+					<p class="yellow">手机扫一扫</p>
+					<img src="images/iphone_banner.png" />
+				</div>
+				<div class="top">
+					<p class="yellow">立即赚钱</p>
+					<img src="images/anzhuo_banner.png" />
+				</div>
+				<div class="topWx">
+					<p class="yellow">微信关注</p>
+					<img src="images/wx_banner.png" />
+				</div>
+				<p class="top_downip">iPhone版下载</p>
+				<p class="top_down">Android版下载</p>
+				<p class="top_wx">官方微信</p>
+			</div>
+		</div>
+		<div class="common_h bg_w">
+			<img src="images/download_07.jpg">
+		</div>
+		<div class="common_h bg_f">
+			<img src="images/download_10.jpg" />
+		</div>
+		<div class="common_h bg_w">
+			<img src="images/download_16.jpg" />
+		</div>
+		<div class="common_h bg_f">
+			<img src="images/download_13.jpg" />
+		</div>
+		<div class="app_code">
+			<img src="images/download_02.jpg"/>
+		</div>
+		<div class="common_h" style="padding:20px 0">
+			<img src="images/download_22.jpg" />
+		</div>
+		<div ng-include="'./main_bottom.html'"></div>  
+        <div ng-include="'./footer.html'"></div>
+	</body>
+</html>

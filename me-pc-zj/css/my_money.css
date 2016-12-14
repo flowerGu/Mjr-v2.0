@@ -1,0 +1,272 @@
+.my_m_banner{
+	width:100%;
+	height:324px;
+	background:url(../images/my_money_bg.gif) repeat-x;
+}
+.my_mbanner_main{
+	width:1000px;
+	height:100%;
+	margin:0 auto;	
+	position: relative;
+}
+.my_m_banner_left{
+	width:481px;
+	height:250px;
+	float:left;
+	margin-top:50px;
+	padding-left:14px;
+}
+.my_m_banner_left h2{
+	font-size:24px;
+	color:#fff;
+	font-weight: 100;
+	height:63px;
+}
+.my_mbanner_left_cen{
+	width:100%;
+	height:126px;
+	position: relative;
+}
+.my_mbanner_left_cen h5{
+	color:#fff;
+	font-weight: 100;
+	text-align: center;
+	font-size:16px;
+	height:62px;
+}
+.my_mbanner_left_cen h5 p{
+	font-size:32px;
+	line-height: 60px;
+	margin:0;
+}
+.my_mbanner_left_cen p{
+	font-size:14px;
+	color:#fff;
+	margin-top:40px;
+	text-align: center;
+}
+.my_mb_sanjiao{
+	width:0px;
+	height:0px;
+	border-right:5px solid transparent;
+	border-bottom:9px solid #fff;
+	border-left:5px solid transparent;
+	position: absolute;
+	top:85px;
+	left:230px;
+}
+.my_mbanner_left_tp{
+	width:477px;
+	height:7px;
+	background:#fff;
+	position:absolute;
+	top:76px;
+	border-radius:4px;
+	transform: rotate(-2deg);
+}
+.my_mb_tpleft{
+	position:absolute;
+	left:0;
+	top:35px;
+}
+.my_mb_tpright{
+	position: absolute;
+	right: 0;
+	top:-4px;
+}
+
+.my_m_banner_right{
+	width:317px;
+	height:228px;
+	float:right;
+	padding-top:94px;
+	overflow: hidden;
+	position:absolute;
+	right:5px;	
+}
+.my_mbanner_botm{
+	font-size:12px;
+	color:#fff;
+	margin-top:35px;
+}
+
+dl,dt,dd{padding: 0;margin: 0;}
+.my_m_banner_right dl,.my_m_banner_right div{
+	float:left;
+}
+.my_m_bann_boder{
+	border-left:1px solid #fff;
+	height:33px;
+	width:25px;
+	margin-top:11px;
+	/*background: yellow;*/
+}
+.my_m_banner_right dl{
+	height:44px;
+	color:#fff;
+	font-size:16px;
+	width:130px;
+	padding-left:11px;
+}
+.my_m_b_r_top{
+	width:100%;
+	height:63px;
+	overflow: hidden;
+}
+dl dt{
+	line-height:30px;
+}
+#my_money_b_text{
+	width:310px;
+	height:40px;
+	border:0;
+	border-radius: 5px;
+	margin:0 auto;
+	font-size:20px;
+	color:#cbcbcb;
+}
+.rightaway,.sellout{
+	width:316px;
+	height:34px;
+	line-height:34px;
+	text-align: center;
+	display: block;
+	border-radius: 5px;
+	margin-top:13px;
+	color:#f75c5a;
+}
+.rightaway{background:#ffe399;}
+.rightaway:hover{background:rgba(255, 227, 153, 0.97);color:#F621A7}
+.sellout{background:#ccc;color:#fff;}
+.sellout:hover{background:#ccc;color:#fff}
+.tishi{
+	display:block;
+	width:100%;
+	text-align: right;
+	color:#fff;
+	margin-top:17px;
+}
+a:focus{outline:none;}
+/*---main---------------------------------------------*/
+.my_m_main{
+	height:auto;
+	width:950px;
+	margin:0 auto;
+	padding:0 25px;
+}
+.my_m_main_top{
+	width:100%;
+	height:70px;
+	border-bottom:1px solid #cbcbcb;
+	overflow: hidden;
+	margin:0;
+}
+.my_m_main_top li{
+	float:left;
+	line-height:67px;
+	width:150px;
+	height:67px;
+	background:url(../images/xiangmugray.png) no-repeat 10px 20px;
+	font-size:16px;
+	cursor: pointer;
+}
+
+.my_m_mian_list{
+	float:left;
+	width:55px;
+	height:44px;
+	margin-top:20px;
+}
+.my_m_main_top .my_m_main_lired{	
+	color:#fb5466;
+	border-bottom:4px solid #fb5466;
+	background-image:url(../images/xiangmured.png);
+}
+.my_m_main_cen{
+	width:100%;
+	box-sizing: border-box;
+	padding:0 25px;
+	min-height:353px;
+	margin:0 auto;
+	
+}
+.my_m_main_cen0{
+	width:100%;
+	min-height:353px;
+	padding-bottom: 25px;
+}
+.my_m_main_zaiwu{
+	height:150px;
+	width:100%;
+	border-bottom: 1px dashed #c4c4c4;	
+}
+.buycar{
+	font-size:20px;
+	height:70px;
+}
+.buycar_mesg{
+	height:28px;
+	font-size:14px;
+}
+.buycar_mesg td,.buycar_mesg1 td{
+	text-align:center;
+}
+.buycar_mesg td:first-child,.buycar_mesg1 td:first-child{
+	text-align:left;
+}
+.buycar_mesg1{
+	height:50px;
+	font-size:18px;
+}
+
+.my_m_main_cen_cen{
+	min-height:290px;
+	max-height:450px;
+	height: auto;
+	padding:63px 45px 14px 34px;
+	border-bottom:1px dashed #c4c4c4;
+	overflow: hidden;
+}
+
+
+.my_m_main_botm{
+	width:100%;
+	height:110px;
+	padding:25px 0 0 50px;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+.my_m_main_botm_left{
+	width:420px;
+	height:68px;
+	padding-top:15px;
+	border-right: 1px dashed #d6d6d6;
+	float:left;
+}
+.my_m_cost{
+	font-size:16px;
+	width:130px;
+	text-align: center;
+	float:left;
+	line-height: 30px;
+	color:#616161;
+}
+.my_m_botm_sever{
+	width:135px;
+	margin-left:92px;
+	float:left;
+	font-size:16px;
+	color：#616161;
+	padding-top:42px;
+}
+#my_m_botm_click{
+	float:left;
+	height:35px;
+	width:95px;
+	border-radius: 8px;
+	background:#f84d43;
+	text-align: center;
+	line-height:35px;
+	color:#fff;
+	margin-top:35px;
+}

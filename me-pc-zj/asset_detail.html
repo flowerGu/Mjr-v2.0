@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="renderer" content="webkit" /> 
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+</head>
+<title>资产明细</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/head_one.css" rel="stylesheet" type="text/css" />
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/my_account.css" />
+<link rel="stylesheet" type="text/css" href="css/all_item.css"/>
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/pikaday.css"/>
+<link rel="stylesheet" href="css/asset_detail.css" />
+
+<script type="text/javascript" src="js/pikaday.min.js"></script>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/angular-1.0.1.min.js"></script>
+<script src="./js/angular-route.min.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/md5.js"></script>
+
+
+<body  ng-app="Mejinrong">
+    <div ng-include="'head_one.html'"></div>
+	<div ng-include="'nav.html'"></div>
+	<div class="body_right br_top">
+    	<dl class="body_rightdl">
+    		<dt></dt>
+    		<dd>客服</dd>
+    	</dl>
+    	<dl class="body_rightdl body_rightdl1">
+    		<dt></dt>
+    		<dd>二维码</dd>
+    	</dl>
+    	<p class="jiantou"><img src="images/menu-up.png"/></p>
+    </div>
+    <!--
+    	作者：offline
+    	时间：2016-05-09
+    	描述：abnner
+    -->
+	<div class="my_account_bann">
+		<div class="my_account_bann_cen">
+			<p>恭喜民信成为中国互联网协会首批会员</p>
+		</div>
+	</div>
+	<!--
+    	作者：offline
+    	时间：2016-05-09
+    	描述：main
+    -->
+	<div class="my_account_main">
+		<div class="my_account_main_left">
+			<ul class="my_account_mainleft">
+				<a href="my_accout01.html"><li class="my_account_mainleft_red" style="color:#fb2d5b;">账户首页</li></a>
+				<li><a href="all_item.html">我的项目</a></li>
+				<li><a href="assets_record.html">资产记录</a></li>
+				<li><a href="asset_detail.html" class="my_account_mainleft_red">资产明细</a></li>
+			</ul>
+			<ul class="my_account_mainleft">
+				<li class="my_account_pset">个人设置</li>
+				<li><a href="person_test.html">个人设置首页</a></li>
+				<li>银行卡管理</li>
+			</ul>
+		</div>
+		<div class="my_account_mainright">
+			<div class="my_account_mr">
+				<dl class="my_account_mrdl">
+					<dt>累计收益</dt>
+					<dd>{{}}</dd>
+				</dl>
+				<dl class="my_account_mrdl my_account_mrdl1">
+					<dt>账户资产</dt>
+					<dd>{{}}</dd>
+				</dl>
+				<dl class="my_account_mrdl my_account_mrdl2">
+					<dt>账户余额</dt>
+					<dd>{{}}</dd>
+				</dl>
+				
+				<div class="asset_d_tab">
+					<table class="asset_d_table">
+					<thead>
+						<tr>
+							<td height="25"></td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="asset_d_tab_td">已出借金额</td>
+							<td>{{}}</td>
+							<td class="asset_d_tab_td">已获收益</td>
+							<td>{{}}</td>
+						</tr>
+						<tr>
+							<td class="asset_d_tab_td">待收本金</td>
+							<td>{{}}</td>
+							<td class="asset_d_tab_td">待收收益</td>
+							<td>{{}}</td>
+						</tr><tr>
+							<td class="asset_d_tab_td">冻结金额</td>
+							<td>{{}}</td>
+							
+						</tr>
+						<tr>
+							<td colspan="2" align="center"><a href="chongzhi.html">充值</a></td>
+							<td colspan="2" align="center"><a href="tixian.html">提现</a></td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+			</div>
+	
+		</div>
+	</div>
+	
+	<div ng-include="'./main_bottom.html'"></div>  
+	<div ng-include="'./footer.html'"></div>
+</body>
+<script type="text/javascript" src="./js/my_account01.js" ></script>
+<script type="text/javascript">
+ 	 var app = angular.module('Mejinrong', []);
+ 	 app.controller('myCtrl', function($scope) {
+	    $.ajax({
+	      url:data_json.getdetail_pc,
+	      type:'post',
+	      async:false,
+	      data:{version:app_data.version,tokenid:getCookie('tokenid')},
+	      dataType:'json',
+	      success:function(data){
+	        if(data.code=='000')
+	        {	
+				 $scope.data = data;
+
+	        }else
+	        {
+
+	        }
+	      }
+	    });
+    });
+    app.controller('invests', function($scope) {
+		$.ajax({
+		      url:data_json.invests_pc,
+		      type:'post',
+		      async:false,
+		      data:{version:app_data.version,tokenid:getCookie('tokenid'),current:1,type:1},
+		      dataType:'json',
+		      success:function(data){
+		        if(data.code=='000')
+		        {
+		        	if(data.list!='')
+		        	{
+		        		
+					    $scope.list = data.list;
+						
+		        	}
+		        	else
+		        	{
+	         			 $('#investlist').html('暂无出借！');
+		        	}
+				  	
+		        }
+		    }
+		});
+	});
+	
+</script>
+
+<script type="text/javascript">
+   seeMore();
+</script>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="renderer" content="webkit" /> 
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+
+</head>
+<title>我的账户-资产明细</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/head_one.css" rel="stylesheet" type="text/css" />
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/my_account.css" />
+<link rel="stylesheet" type="text/css" href="css/all_item.css"/>
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/asset_detail.css" />
+
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/angular-1.0.1.min.js"></script>
+<script src="./js/angular-route.min.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/md5.js"></script>
+
+
+<body  ng-app="Mejinrong">
+    <div ng-include="'head_one.html'"></div>
+	<div ng-include="'nav.html'"></div>
+	<div ng-include="'service_nav.html'"></div>
+
+	<div class="my_account_main" ng-controller="myCtrl">
+		 <div ng-include="'left_nav.html'" ng-init="accDetial='my_account_mainleft_red'" ></div>
+		<div class="my_account_mainright">
+			<div class="my_account_mr">
+				<dl class="my_account_mrdl">
+					<dt>累计收益</dt>
+					<dd><font ng-bind="data.earning"></font>元</dd>
+				</dl>
+				<dl class="my_account_mrdl my_account_mrdl1">
+					<dt>账户资产</dt>
+					<dd><font ng-bind="data.total_assets"></font>元</dd>
+				</dl>
+				<dl class="my_account_mrdl my_account_mrdl2">
+					<dt>账户余额</dt>
+					<dd><font ng-bind="data.balance"></font>元</dd>
+				</dl>
+				
+				<div class="asset_d_tab">
+					<table class="asset_d_table">
+					<thead>
+						<tr>
+							<td height="25"></td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="asset_d_tab_td">已出借金额</td>
+							<td><font ng-bind="data.invest_money"></font>元</td>
+							<td class="asset_d_tab_td">已获收益</td>
+							<td><font ng-bind="data.profit_amount"></font>元</td>
+						</tr>
+						<tr>
+							<td class="asset_d_tab_td">待收本金</td>
+							<td><font ng-bind="data.duein_amount"></font>元</td>
+							<td class="asset_d_tab_td">待收收益</td>
+							<td><font ng-bind="data.duein_total"></font>元</td>
+						</tr><tr>
+							<td class="asset_d_tab_td">冻结金额</td>
+							<td><font ng-bind="data.frozen_amount"></font>元</td>
+							
+						</tr>
+						<tr>
+							<td colspan="2" align="center"><a href="chongzhi.html">充值</a></td>
+							<td colspan="2" align="center"><a href="tixian.html">提现</a></td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+			</div>
+	
+		</div>
+	</div>
+	
+	<div ng-include="'./main_bottom.html'"></div>  
+	<div ng-include="'./footer.html'"></div>
+</body>
+
+<!-- <body  ng-app="Mejinrong">
+<div ng-include="'./setting_nav.html'" ng-init="accountnav='active'"></div>  
+<div class="list-group" ng-controller="myCtrl" >
+		   		<p>	手机号：{{data.phone_number}}<p>
+		   		<p>	昨日收益：{{data.previous_earning}}<p>
+		   		<p>总资产：{{data.total_assets}}</p>
+		   		<p>可用余额：{{data.balance}}</p>
+		   		<p>累计收益：{{data.earning}}</p>	  
+		   		<p>
+			   		<a href="chongzhi.html" class="btn btn-info" role="button">充值</a>
+			   		<a href="tixian.html" class="btn btn-warning" role="button">提现</a>
+		   		</p>			  
+ </div>
+
+
+ </body> -->
+ <script type="text/javascript">
+ 	 var app = angular.module('Mejinrong', []);
+ 	 app.controller('myCtrl', function($scope) {
+		    $.ajax({
+		      url:data_json.assetsdetail_pc,
+		      type:'post',
+		      async:false,
+		      data:{version:app_data.version,tokenid:getCookie('tokenid')},
+		      dataType:'json',
+		      success:function(data){
+		        if(data.code=='000')
+		        {
+						
+						    $scope.data = data;
+						
+
+		        }else
+		        {
+
+		        }
+		      }
+		    });
+    });
+
+</script>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="renderer" content="webkit" /> 
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+</head>
+<title>isregister</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="./js/angular-1.0.1.min.js"></script>
+<!-- <link href="css/register.css" rel="stylesheet" type="text/css" /> -->
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/angular-1.0.1.min.js"></script>
+<script src="./js/functions.js"></script>
+<script src="./js/config.js"></script>
+<script type="text/javascript">
+	function isregister() {
+		var logintel=$('#logintel').val().trim();
+		$.ajax({
+			url:data_json.checkusername_pc,
+			type:'post',
+			async:false,
+			data:{
+				version:app_data.version,
+				logintel:logintel
+			},
+			dataType:'json',
+			success:function(data){
+				if(data.code=='000')
+				{
+					var html=alertmsg(data.msg)
+					$('body').append("<div id='msgdiv'></div>");
+					$('#msgdiv').html('');
+					$('#msgdiv').append(html);
+				}else
+				{
+					var html=alertmsg(data.msg)
+					$('body').append("<div id='msgdiv'></div>");
+					$('#msgdiv').html('');
+					$('#msgdiv').append(html);
+				}
+			}
+		});
+	}
+</script>
+<body> 
+<p>
+	<input type="text" placeholder="请输入手机号" class="input-xlarge"  id="logintel" name="logintel" >
+	  <button class="btn btn-success" onclick="isregister()">检测</button>
+</p>
+
+</body>

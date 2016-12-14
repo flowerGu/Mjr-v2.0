@@ -1,0 +1,298 @@
+.section {
+  overflow: hidden;
+}
+.aboutAppWrap {
+  width: 1002px;
+  margin: 0 auto;
+  position: relative;
+  height: 100%;
+  padding-top: 53%;
+  margin-top: -47%;
+}
+/*header*/
+header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 103px;
+  width: 100%;
+  z-index: 99;
+}
+/*第一屏*/
+.one_sect,
+.two_sect,
+.three_sect,
+.four_sect {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+.sectionBg {
+  background: url(../images/aboutApp/twoBg.jpg) no-repeat center bottom;
+  -webkit-background-size: 100% 100%;
+          background-size: 100% 100%;
+}
+.sectionOneBg {
+  background: url(../images/aboutApp/oneBg.jpg) no-repeat center bottom;
+  -webkit-background-size: 100% 100%;
+          background-size: 100% 100%;
+}
+.one_sect .phoneBox {
+  float: left;
+  width: 45%;
+  margin-top: 75px;
+}
+.one_sect .phoneBox img {
+  width: 100%;
+  display: block;
+}
+.one_sect .txtBox {
+  float: right;
+  width: 55%;
+}
+.one_sect .txtBox .txt_name {
+  font-size: 100px;
+  line-height: 100px;
+  font-weight: 100;
+  color: #fff;
+}
+.one_sect .txtBox .txt_describe {
+  margin: 30px 0 60px 0;
+  font-size: 68px;
+  line-height: 68px;
+  font-weight: 100;
+  color: #fff;
+}
+.one_sect .txtBox .QR_Code {
+  float: left;
+  width: 122px;
+  height: 153px;
+  margin: 0px 30px 0 116px;
+}
+.one_sect .txtBox .QR_Code img {
+  width: 100%;
+  display: black;
+  margin: 0 auto;
+}
+.one_sect .txtBox .QR_Code p {
+  color: #fff;
+  text-align: center;
+  line-height: 33px;
+}
+.one_sect .txtBox .bnt_box {
+  float: left;
+  width: 276px;
+  height: 145px;
+}
+.one_sect .txtBox .bnt_box .mrt15 {
+  margin-top: 15px;
+}
+/*第二屏*/
+.two_sect {
+  width: 100%;
+}
+.two_sect .left {
+  float: left;
+  width: 50%;
+  /* padding-top:12%; */
+}
+.two_sect .left .phone2Box {
+  opacity: 0;
+  width: 65%;
+}
+.two_sect .left .phone2Box img {
+  width: 100%;
+  display: block;
+}
+.two_sect .right {
+  opacity: 0;
+  width: 50%;
+  /* padding-top:15%; */
+  float: right;
+}
+.two_sect .right .text {
+  width: 100%;
+  background: url(../images/aboutApp/sys01.jpg) no-repeat bottom right;
+  padding-bottom: 90px;
+}
+.two_sect .right .text h3 {
+  color: #f5004c;
+  font-size: 100px;
+  text-align: right;
+  line-height: 100px;
+}
+.two_sect .right .text p {
+  text-align: right;
+  font-size: 32px;
+  line-height: 32px;
+  padding-top: 15px;
+}
+.two_sect .right .downBox {
+  background: url(../images/aboutApp/downbg.png) no-repeat bottom right;
+  width: 100%;
+  padding-bottom: 35px;
+  margin-top: 15px;
+  position: relative;
+}
+.two_sect .right .downBox .imgbox {
+  background: #ccc;
+  float: right;
+  width: 30%;
+  margin-right: 2%;
+}
+.two_sect .right .downBox .imgbox img {
+  width: 100%;
+  border: 1px solid #ccc;
+  display: block;
+  margin: 0;
+}
+.two_sect .right .downBox .imgboxF {
+  float: left;
+  margin-left: 20%;
+}
+/*第三屏*/
+.three_sect {
+  width: 100%;
+}
+.three_sect .imagesbox {
+  float: right;
+  width: 50%;
+}
+.three_sect .imagesbox .phone2Box {
+  opacity: 0;
+  width: 65%;
+  padding-left: 22%;
+}
+.three_sect .imagesbox .phone2Box img {
+  width: 100%;
+  display: block;
+}
+.three_sect .textbox {
+  opacity: 0;
+  width: 50%;
+  /* padding-top:15%; */
+  float: left;
+}
+.three_sect .textbox .text {
+  width: 100%;
+  background: url(../images/aboutApp/sys02.jpg) no-repeat bottom left;
+  padding-bottom: 90px;
+}
+.three_sect .textbox .text h3 {
+  color: #f5004c;
+  font-size: 100px;
+  text-align: left;
+  line-height: 100px;
+}
+.three_sect .textbox .text p {
+  text-align: left;
+  font-size: 32px;
+  line-height: 32px;
+  padding-top: 12px;
+}
+.three_sect .textbox .downBox {
+  background: url(../images/aboutApp/downbg.png) no-repeat bottom left;
+  width: 100%;
+  padding-bottom: 35px;
+  margin-top: 10px;
+  position: relative;
+}
+.three_sect .textbox .downBox .imgbox {
+  background: #ccc;
+  float: left;
+  width: 30%;
+  margin-left: 2%;
+}
+.three_sect .textbox .downBox .imgbox img {
+  width: 100%;
+  border: 1px solid #ccc;
+  display: block;
+  margin: 0;
+}
+.three_sect .textbox .downBox .imgboxF {
+  float: right;
+  margin-right: 20%;
+}
+/*第四屏*/
+.four_sect {
+  width: 100%;
+}
+.four_sect .left {
+  float: left;
+  width: 50%;
+  /* padding-top:12%; */
+}
+.four_sect .left .phone2Box {
+  opacity: 0;
+  width: 65%;
+}
+.four_sect .left .phone2Box img {
+  width: 100%;
+  display: block;
+}
+.four_sect .right {
+  opacity: 0;
+  width: 50%;
+  /* padding-top:15%; */
+  float: right;
+}
+.four_sect .right .text {
+  width: 100%;
+  background: url(../images/aboutApp/sys01.jpg) no-repeat bottom right;
+  padding-bottom: 85px;
+}
+.four_sect .right .text h3 {
+  color: #f5004c;
+  font-size: 100px;
+  text-align: right;
+  line-height: 100px;
+}
+.four_sect .right .text p {
+  text-align: right;
+  font-size: 32px;
+  line-height: 32px;
+  padding-top: 15px;
+}
+.four_sect .right .downBox {
+  background: url(../images/aboutApp/downbg.png) no-repeat bottom right;
+  width: 100%;
+  padding-bottom: 35px;
+  margin-top: 10px;
+  position: relative;
+}
+.four_sect .right .downBox .imgbox {
+  background: #ccc;
+  float: right;
+  width: 30%;
+  margin-right: 2%;
+}
+.four_sect .right .downBox .imgbox img {
+  width: 100%;
+  border: 1px solid #ccc;
+  display: block;
+  margin: 0;
+}
+.four_sect .right .downBox .imgboxF {
+  float: left;
+  margin-left: 20%;
+}
+/*底部*/
+.section-footer footer {
+  background: #f1eff0;
+}
+.firstCircle {
+  width: 100%;
+  -webkit-animation: z 1.5s linear 0s infinite;
+  animation: z 1.5s linear 0s infinite;
+}
+@-webkit-keyframes z {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}

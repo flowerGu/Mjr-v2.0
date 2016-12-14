@@ -1,0 +1,51 @@
+<div id='footer' style="background-color:#fff">
+		<div class="content footer" >
+			<ul class="footer_list">
+				<li><a href='index.html'>网站首页</a></li>
+				<li class="line"></li>
+				<li><a href='about.html'>关于我们</a></li>
+				<li class="line"></li>
+				<li><a href='help_main.html'>帮助中心</a></li>
+				<li class="line"></li>
+				<li><a href='tencent://message/?uin=1396208708&Site=qingde.net&Menu=yes'>在线咨询</a></li>
+			</ul>
+			<p>版权所有 © 2012-2016 Me金融 中融民信资本管理有限公司&nbsp;&nbsp;&nbsp;  京ICP备12012060号-4</p>
+<!-- 			<img style="margin-left:60px;" src="./images/gs.png">
+			<img src="./images/zz.png">
+			<img src="./images/kexin.png">
+			<img src="./images/xinren.png"> -->
+		</div>
+</div>
+<!--弹框-->
+<div id="DialogMask" style="display:none; position:fixed;top:0;left:0;right:0;bottom:0;z-index:25530;overflow:auto;background:#000;opacity:0.3;filter:Alpha(opacity=30)"></div>
+<div class="DialogMaskLayou" style="bottom: 0;left: 0;position: fixed;right: 0;top: 0;z-index: 25531; display:none;">
+	<div style="background:url(images/tankuang_pic.png) no-repeat;width:847px;height:367px;position:absolute;left:50%;top:50%;margin-top:-184px;margin-left:-424px;">
+        <div style="width:847px;height:367px;position:relative;">
+            <h1 style="font-size:26px;height:56px;line-height:56px;color:#fff;padding-left:34px;">Me金融平台公告</h1>
+            <div style="font-size:16px;line-height:26px;color:#333;width:600px;position:absolute;left:212px;top:75px;">
+                <p>亲爱的Me金融客户：</p>
+				<p>您好！</p>
+                <p style="text-indent:34px;">为了给您提供更稳定、更优质的服务，我们将于8月10日20:00~ 24:00期间对服务器进行优化维护与全新网站改版上线，在此期间可能出现访问较慢或不能操作，若需要充值或出借请合理安排操作时间，给您带来不便敬请见谅！</p>
+                <p style="text-align:right;">Me金融运营团队 <br/><span id="J_tankuang_date"></span></p>
+            </div>
+            <a href="#" style="background:url(images/tankuang_btn.jpg) no-repeat;width:115px;height:36px;display:block;position:absolute;bottom:37px;right:40px;" id="J_know"></a>
+        </div>
+    </div>
+</div>
+<!--弹框 end-->
+<script>
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var date = date.getDate();
+    var currentTime = year + "年" + month + "月" + date + "日 " ;
+    document.getElementById('J_tankuang_date').innerHTML = currentTime;
+	var iSdialog = getCookie("PlatformMsg");
+	if(iSdialog != "true"){
+		$("#DialogMask,.DialogMaskLayou").show();
+	}
+	$("#J_know").click(function(){
+		setCookie("PlatformMsg","true");
+		$("#DialogMask,.DialogMaskLayou").hide();
+	})
+</script>

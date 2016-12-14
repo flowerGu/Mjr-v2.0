@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit" /> 
+
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+		<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+		<META HTTP-EQUIV="expires" CONTENT="0">
+		<title>民信公司旗下品牌。严格风控，专业可信赖【Me金融】</title>
+		<meta name="keywords" content="Me金融,民信Me金融,Me金融理财,互联网金融,投资理财,P2P理财">
+		<meta name="description" content="Me金融-民信公司旗下独立品牌，专业的个性化互联网金融服务平台">
+		
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="css/base.css" rel="stylesheet" type="text/css" />
+		<link href="css/head_one.css" rel="stylesheet" type="text/css" />
+		<link href="css/footer.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="css/index01.css" />
+		<script src="./js/jquery.min.js"></script>
+        <script src="js/angular-1.0.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/config.js"></script>
+        <script src="js/functions.js"></script>
+        <link rel="stylesheet" href="css/my_account.css" />
+    	<style>
+			.sy_bann_cenban img{width:100%;height:100%;}
+		</style>
+	</head>
+	<body ng-app="Mejinrong">
+		<div ng-include="'head_one.html'" style="background:#f7f7f7"></div>
+		<div ng-include="'nav.html'"style="background:#fff"></div>
+		<div ng-include="'right_nav.html'"></div>
+		
+		<div class="sy_banner" >
+			<div class="sy_bann_center">
+				<ul class="sy_bann_cenul">
+				</ul>
+				<ul class="sy_bann_cenlunbo">
+					<!--<li class="sy_bann_lunbobg"></li>
+					<li></li>
+					<li></li>-->
+				</ul>
+			</div>
+		</div>
+
+		<div class="sy_main">
+			
+			<div class="sy_main1 clearfix">
+				<dl class="sy_main1_dl">
+					<dt></dt>
+					<dd>
+						<p>安全</p>
+						严格的风控体系<br>多重安全防护
+					</dd>
+				</dl>
+				<dl class="sy_main1_dl">
+					<dt class="sy_main_dldt1"></dt>
+					<dd>
+						<p>资金</p>
+						第三方托管<br>值得信赖
+					</dd>
+				</dl>
+				<dl class="sy_main1_dl">
+					<dt class="sy_main_dldt2"></dt>
+					<dd>
+						<p>方便</p>
+						随时随地<br>轻松赚钱
+					</dd>
+				</dl>
+				<dl class="sy_main1_dl">
+					<dt class="sy_main_dldt3"></dt>
+					<dd>
+						<p>实力</p>
+						互联网金融协会<br>首批会员
+					</dd>
+				</dl>
+			</div>
+			<div class="sy_buzhou">
+				<dl class="sy_buzhou_dl">
+					<dt>1</dt>
+					<dd><p>注册</p>
+						会员注册<br>
+						三步注册成功
+					</dd>
+				</dl>
+				<div class="sy-dl-jiantou">
+					
+				</div>
+				<!-- <dl class="sy_buzhou_dl sy_buzhou_dlw">
+					<dt>2</dt>
+					<dd><p>开户</p>
+						江西银行开户<br>
+						银行存管两步生成
+					</dd>
+				</dl> -->
+				<dl class="sy_buzhou_dl sy_buzhou_dlw">
+					<dt>2</dt>
+					<dd><p>认证</p>
+						身份信息认证<br>
+						更安全
+					</dd>
+				</dl>
+				<div class="sy-dl-jiantou">
+					
+				</div>
+				<dl class="sy_buzhou_dl sy_buzhou_dlmarg">
+					<dt>3</dt>
+					<dd><p>充值</p>
+						快捷充值<br>
+						随时充值
+					</dd>
+				</dl>
+				<div class="sy-dl-jiantou">
+					
+				</div>
+				<dl class="sy_buzhou_dl sy_buzhou_dlw">
+					<dt>4</dt>
+					<dd><p>出借</p>
+						成功出借<br>
+						坐享收益
+					</dd>
+			</div>
+			<div class="sy_main2" ng-controller="myCtrl">
+				<div class="sy_main2_top"  ng-class="{2: 'sy_main2_botm', 1: 'sy_main2_cen'}[x.status]"  ng-repeat="x in list">
+
+					<div class="sy_main2_top_left"  ng-show="x.product_type==1">
+						
+					</div>
+					<p class="sy_main2_top_lword" ng-show="x.product_type==1">体验标</p>
+					<dl class="sy_main2_dl">
+						<dt><font ng-bind="x.product_name | substr:0:3"></font></dt>
+						<dd><font ng-bind="x.product_name | substr:3:18"></font></dd>
+					</dl>
+					<dl class="sy_main2_dl1">
+						<dt>协议出借利率</dt>
+						<dd><font ng-bind="x.years_income | percent"></font></dd>
+					</dl>
+					<dl class="sy_main2_dl1">
+						<dt>项目期限</dt>
+						<dd><font ng-bind="x.period"></font>月</dd>
+					</dl>
+					<dl class="sy_main2_dl1">
+						<dt>起借金额</dt>
+						<dd class="border0"><font ng-bind="x.start_invest_money"></font>元</dd>
+					</dl>
+				
+					<a href="javascript:;" ng-href="productdetail.html?protuctid={{x.protuct_id}}&status={{x.status}}&id={{x.id}}" class="sy_main2_more" ng-show="x.status==1">我要出借</a></dd>
+					<a href="javascript:;" ng-href="productdetail.html?protuctid={{x.protuct_id}}&status={{x.status}}&id={{x.id}}" class="sy_main2_more" ng-show="x.status==2">售罄</a></dd>
+				
+				
+				</div>
+				<div class="pro-more" ><span onclick="window.location.href='prducts.html'">[点击查看更多项目]</span></div>
+				<p class="saft_baozheng"> <img src="images/shouquan.png"/>&nbsp;市场有风险 出借需谨慎</p>
+			</div>
+		</div>
+		
+		<div ng-include="'./main_bottom.html'" ></div>  
+		<div ng-include="'./footer.html'"></div>
+		<script type="text/javascript">
+
+			var app = angular.module('Mejinrong', []);
+			$.ajax({
+		    url:data_json.banner_pc,
+		    type:'post',
+		    async:false,
+		    data:{version:app_data.version,tokenid:getCookie('tokenid')},
+		    dataType:'json',
+		    success:function(data){
+		        if(data.code=='000')
+		        {	
+		        	var i=0;
+					function lunbo(){
+						var ali = $(document).width();
+						var length=data.banner_urls.length;
+						$(".sy_bann_cenul").css("margin-left",-ali*i+"px");
+						$(".sy_bann_cenlunbo li").eq(i).addClass("sy_bann_lunbobg").siblings().removeClass("sy_bann_lunbobg");
+						i++;
+						if(i>(length-1)){
+							i = 0;
+						}
+						
+					}
+		        	var timer = setInterval(lunbo,3000);
+		        	for(var i = 0; i < data.banner_urls.length;i++){
+		        		$(".sy_bann_cenul").append("<a href="+data.banner_urls[i].banner_url+" title="+data.banner_urls[i].title+"><li style='background:url("+data.banner_urls[i].pic_url+") no-repeat  center center; '></li></a>");
+		        		$('.sy_bann_cenlunbo').append('<li></li>');
+		        	}
+		        	$('.sy_bann_cenlunbo li:eq(0)').addClass("sy_bann_lunbobg");
+		        	var ali =$(document).width();
+		        	var i = 0;
+					var length=data.banner_urls.length;
+					$(".sy_bann_cenul").css("width",ali*length+"px");
+					$(".sy_bann_cenul li").width(ali);
+					$(window).resize(function(){
+						ali =$(document).width();
+						$(".sy_bann_cenul").css("width",ali*length+"px");
+						$(".sy_bann_cenul li").width(ali);
+					});
+					$(".sy_bann_cenlunbo li").click(function(){
+						clearInterval(timer);
+						var index = $(this).index();
+						$(this).addClass("sy_bann_lunbobg").siblings().removeClass("sy_bann_lunbobg");
+						$(".sy_bann_cenul").css("margin-left",-ali*index+"px");
+						if(i !== index && index !== (length-1)){
+							i++;
+						}
+						else if(index == (length-1)){
+							i = 0;
+						}
+						timer = setInterval(lunbo,3000);
+					});
+	
+		        }else
+		        {
+		        	
+		        }
+		    },
+		    error:function(){
+		    }
+		});
+
+		
+			
+		</script>
+		<script type="text/javascript">
+		function products(page) {
+			 var page=getQueryString('page');
+			 	if(page==null)
+			 		page=1;
+			   var where="prducts.html?index=true";
+		$.ajax({
+			url:data_json.products_pc,
+			type:'post',
+			async:false,
+			data:{version:app_data.version,tokenid:getCookie('tokenid'),current:page},
+			dataType:'json',
+			success:function(data){
+				if(data.code=='000')
+				{
+
+					app.controller('myCtrl', function($scope) {
+
+					    $scope.list = data.list;
+					    $scope.isShow = islogin(getCookie('tokenid'));
+					    $scope.data = data;
+					    $scope.addNewItem = function() {
+
+							$.ajax({
+								url:data_json.products_pc,
+								type:'post',
+								async:false,
+								data:{version:app_data.version,tokenid:getCookie('tokenid'),current:2},
+								dataType:'json',
+								success:function(data){
+									if(data.code=='000')
+									{
+										$(data.list).each(function(idx, item) { 
+											$scope.list.push(data.list[idx]);
+										}); 
+										
+									}else
+									{
+
+									}
+								}
+							});
+						};
+					});
+
+					app.filter("percent",function(){
+		                return function(input){
+		                    input = (input*100).toFixed(2)+'%';
+		                    return input;
+		                }
+		            });
+		            app.filter("substr",function(){
+		                return function(input,start,end){
+		                	if(end>input.length)
+		                	{
+		                		end=input.length;
+		                	}
+		                    input = input.substr(start,end);
+		                    return input;
+		                }
+		            });
+		             app.filter("substrencode",function(){
+		                return function(input,start,end){
+		                	if(end>input.length)
+		                	{
+		                		end=input.length;
+		                	}
+		                    input = input.substr(start,end);
+		                    input=encodeURI(input);
+		                    return input;
+		                }
+		            });
+				}else
+				{
+
+				}
+			}
+		});
+	}
+	var page=getQueryString('page');
+	if(typeof(page)=='object')
+		page=1;
+	products(page);
+</script>
+	</body>
+</html>

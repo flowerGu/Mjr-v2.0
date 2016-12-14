@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<META HTTP-EQUIV="expires" CONTENT="0">
+	<title>项目列表-热门出借产品【Me金融】</title>
+	<meta name="keywords" content="Me金融,民信Me金融,Me金融理财,互联网金融,投资理财,P2P理财">
+	<meta name="description" content="Me金融-民信公司旗下独立品牌，专业的个性化互联网金融服务平台">
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="css/base.css" rel="stylesheet" type="text/css" />
+	<link href="css/head_one.css" rel="stylesheet" type="text/css" />
+	<link href="css/footer.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="css/index01.css" />
+	<script src="js/jquery.min.js"></script>
+	<script src="js/angular-1.0.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/functions.js"></script>
+	<link rel="stylesheet" href="css/my_account.css" />
+
+</head>
+
+<body ng-app="Mejinrong">
+	<div ng-include="'head_one.html'" style="background:#f7f7f7"></div>
+	<div ng-include="'nav.html'" style="background:#fff"></div>
+	<div ng-include="'right_nav.html'"></div>
+
+
+	<div class="sy_main">
+
+
+		<div class="sy_main2" ng-controller="myCtrl">
+			<div class="sy_main2_top" ng-class="{2: 'sy_main2_botm', 1: 'sy_main2_cen'}[x.status]" ng-repeat="x in list">
+
+				<!-- <div class="sy_main2_top_left"  ng-show="x.product_type==1">
+						
+					</div>
+					<p class="sy_main2_top_lword" ng-show="x.product_type==1">热门推荐</p> -->
+				<div class="sy_main2_top_left">
+
+				</div>
+				<p class="sy_main2_top_lword" ng-bind='x.product_type_name'></p>
+				<dl class="sy_main2_dl">
+					<dt><font ng-bind="x.pro_name"></font></dt>
+					<dd>
+						<font ng-bind="x.product_name2"></font>
+					</dd>
+				</dl>
+				<dl class="sy_main2_dl1">
+					<dt>协议出借利率</dt>
+					<dd>
+						<font ng-bind="x.years_income | percent"></font>
+					</dd>
+				</dl>
+				<dl class="sy_main2_dl1">
+					<dt>项目期限</dt>
+					<dd>
+						<font ng-bind="x.period"></font>月</dd>
+				</dl>
+				<dl class="sy_main2_dl1">
+					<dt>起借金额</dt>
+					<dd class="border0">
+						<font ng-bind="x.start_invest_money"></font>元</dd>
+				</dl>
+
+				<a href="javascript:;" ng-href="productdetail.html?protuctid={{x.protuct_id}}&status={{x.status}}&id={{x.id}}" class="sy_main2_more" ng-show="x.status==1">我要出借</a></dd>
+				<a href="javascript:;" ng-href="productdetail.html?protuctid={{x.protuct_id}}&status={{x.status}}&id={{x.id}}" class="sy_main2_more" ng-show="x.status==2">售罄</a></dd>
+
+
+			</div>
+
+			<div class="pre_next" ng-show="list != ''" style="width:960px;height:70px;line-height:50px;margin-bottom: 25px;">
+				<a href="{{nextpage}}" ng-show="hasnextpage">&nbsp;&nbsp;<下一页>&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				<div>第 <span ng-bind="data.current"></span> 页</div>
+				<a href="{{prepage}}" ng-show='hasprepage'>&nbsp;&nbsp;<上一页>&nbsp;&nbsp;&nbsp;&nbsp;
+			          	</a>
+				<a href="prducts.html">[首页]&nbsp;&nbsp;&nbsp;&nbsp;</a>
+
+			</div>
+			<!-- <p class="saft_baozheng"> <img src="images/shouquan.png"/>&nbsp;资产安全由阳光保险及银行共同保障</p> -->
+
+
+			<!-- <tr ng-show="list != ''">
+				 	<td colspan="3" height="50"><a href="{{prepage}}" ng-show="hasprepage"><上一页></a></td>
+		             <td colspan="3" align="center">		               
+			              第<span ng-bind="data.current"></span>页
+		              </td>
+		              <td>  <a href="{{nextpage}}" ng-show='hasnextpage'><下一页></a></td>
+		         </tr> -->
+		</div>
+
+	</div>
+
+	<div ng-include="'./main_bottom.html'" style="margin-top:80px;"></div>
+	<div ng-include="'./footer.html'"></div>
+	<script type="text/javascript">
+		var app = angular.module('Mejinrong', []);
+		var ali = $(".sy_bann_cenban").width(),
+			i = 0;
+		$(".sy_bann_cenul").css("width", ali * 3 + "px");
+		$(".sy_bann_cenlunbo li").click(function() {
+			clearInterval(timer);
+			var index = $(this).index();
+			$(this).addClass("sy_bann_lunbobg").siblings().removeClass("sy_bann_lunbobg");
+			$(".sy_bann_cenul").css("margin-left", -ali * index + "px");
+			if (i !== index && index !== 2) {
+				i++;
+			} else if (index == 2) {
+				i = 0;
+			}
+			timer = setInterval(lunbo, 2000);
+		});
+
+		var timer = setInterval(lunbo, 1000);
+
+		function lunbo() {
+			$(".sy_bann_cenul").css("margin-left", -ali * i + "px");
+			$(".sy_bann_cenlunbo li").eq(i).addClass("sy_bann_lunbobg").siblings().removeClass("sy_bann_lunbobg");
+			i++;
+			if (i > 2) {
+				i = 0;
+			}
+
+		}
+	</script>
+	<script type="text/javascript">
+		$.ajax({
+			url: data_json.banner_pc,
+			type: 'post',
+			async: false,
+			data: {
+				version: app_data.version,
+				tokenid: getCookie('tokenid'),
+				current: page
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.code == '000') {
+					for (var i = 0; i < data.banner_urls.length; i++) {
+						//		        		console.log(data[i].pic_url);
+						$(".sy_bann_cenban").eq(i).css("background-image", "url('" + data.banner_urls[i].pic_url + "')");
+					}
+
+				} else {
+
+				}
+			},
+			error: function() {
+				//			    console.log("error");
+			}
+		});
+
+
+		// app.controller('ourmoney', function($scope) {
+		// 	$.ajax({
+		// 	    url:data_json.turnoverdetail_pc,
+		// 	    type:'post',
+		// 	    async:false,
+		// 	    data:{version:app_data.version,tokenid:getCookie('tokenid')},
+		// 	    dataType:'json',
+		// 	    success:function(data){
+		// 	        if(data.code=='000')
+		// 	        {	
+		// 				$scope.data = data;
+		// 	        }else
+		// 	        {
+		// 	        	$scope.data = data;
+		// 	        }
+		// 	    },
+		// 	    error:function(){
+		// 		    console.log("error");
+		// 	    }
+		// 	});
+		// });
+		function products(page) {
+			var page = getQueryString('page');
+			if (page == null)
+				page = 1;
+			var where = "prducts.html?index=true";
+			$.ajax({
+				url: data_json.products_pc,
+				type: 'post',
+				async: false,
+				data: {
+					version: app_data.version,
+					tokenid: getCookie('tokenid'),
+					current: page
+				},
+				dataType: 'json',
+				success: function(data) {
+					if (data.code == '000') {
+						$('#current').val(data.current)
+						$('#hasnextpage').val(data.hasnextpage)
+
+ 						var temp1;
+						for(var len=data.list.length-1;len>-1;len--){
+								temp1=data.list[len].pro_name;
+								if(temp1===data.list[len].product_name.substr(0,temp1.length)){
+										data.list[len].product_name2=data.list[len].product_name.substr(temp1.length)
+								}
+								else{
+										data.list[len].product_name2=data.list[len].product_name;
+								}
+						}
+						app.controller('myCtrl', function($scope) {
+
+							$scope.list = data.list;
+							$scope.isShow = islogin(getCookie('tokenid'));
+							$scope.hasnextpage = data.hasnextpage;
+							$scope.data = data;
+							if (data.hasnextpage == 'true') {
+								if (page != null) {
+									nextpage = where + "&page=" + (parseInt(page) + 1);
+								}
+								$scope.nextpage = nextpage;
+							}
+
+							if (page == '1') {
+								$scope.hasprepage = 'false';
+							} else {
+								if (page != null) {
+									prepage = where + "&page=" + (parseInt(page) - 1);
+								}
+								$scope.prepage = prepage;
+								$scope.hasprepage = 'true';
+							}
+							$scope.addNewItem = function() {
+
+								$.ajax({
+									url: data_json.products_pc,
+									type: 'post',
+									async: false,
+									data: {
+										version: app_data.version,
+										tokenid: getCookie('tokenid'),
+										current: 2
+									},
+									dataType: 'json',
+									success: function(data) {
+										if (data.code == '000') {
+											$(data.list).each(function(idx, item) {
+												$scope.list.push(data.list[idx]);
+											});
+
+										} else {
+
+										}
+									}
+								});
+							};
+						});
+
+						app.filter("percent", function() {
+							return function(input) {
+								input = (input * 100).toFixed(2) + '%';
+								return input;
+							}
+						});
+						app.filter("substr", function() {
+							return function(input, start, end) {
+								if (end > input.length) {
+									end = input.length;
+								}
+								input = input.substr(start, end);
+								return input;
+							}
+						});
+						app.filter("substrencode", function() {
+							return function(input, start, end) {
+								if (end > input.length) {
+									end = input.length;
+								}
+								input = input.substr(start, end);
+								input = encodeURI(input);
+								return input;
+							}
+						});
+					} else {
+
+					}
+				}
+			});
+		}
+		var page = getQueryString('page');
+		if (typeof(page) == 'object'){
+			page = 1;
+		}
+		products(page);
+	</script>
+</body>
+
+</html>
